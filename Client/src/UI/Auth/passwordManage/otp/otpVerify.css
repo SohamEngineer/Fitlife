@@ -1,0 +1,72 @@
+.otp-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.otp-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.otp-info {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: #555;
+}
+
+.otp-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.otp-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.otp-box {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.otp-box:focus {
+  border-color: #007bff;
+}
+
+.otp-timer {
+  font-size: 14px;
+  color: #ff3333;
+  margin-bottom: 15px;
+}
+
+.otp-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.otp-button:hover {
+  background-color: #0056b3;
+}
+.finger{
+  font-size: 50px;
+}

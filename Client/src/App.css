@@ -1,0 +1,86 @@
+
+/* google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
+:root {
+  --primary-color: #6f55f2;
+  --heading-color: #132742;
+  --bg-gradient: linear-gradient(
+    90deg,
+    rgba(103, 101, 240, 1) 27%,
+    rgba(141, 141, 235, 1) 85%
+  );
+  --font-name: "Questrial", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+section {
+  padding: 50px 0;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+a:hover {
+  color: unset;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%; /* Use full width */
+  max-width: 1140px; /* Set a max width */
+  padding: 0 15px; /* Add padding */
+  margin: auto; /* Center the container */
+}
+
+.section__title {
+  color: var(--heading-color);
+  font-weight: 700;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px; /* Adjust padding for smaller screens */
+  }
+
+  section {
+    padding: 40px 0; /* Reduce padding for smaller screens */
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem; /* Adjust font sizes for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 5px; /* Further adjust padding for very small screens */
+  }
+
+  section {
+    padding: 30px 0; /* Further reduce padding */
+  }
+
+  h1, h2, h3 {
+    font-size: 1.2rem; /* Further adjust font sizes */
+  }
+}

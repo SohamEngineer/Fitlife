@@ -1,0 +1,105 @@
+/* Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  /* Header */
+  .dashboard-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
+  
+  /* Summary Box */
+  .summary-box {
+    width: 300px;
+    /* background-color: #4caf50; */
+    color: rgb(8, 8, 8);
+    padding: 20px;
+    /* border-radius: 12px; */
+    border:1px solid brown;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* User Table Container */
+  .user-table-container {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+  }
+  
+  /* Table Styles */
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    border: 1px solid #b1afaf;
+  }
+  
+  .user-table th {
+    background-color: #4c4cff;
+    color: white;
+  }
+  .user-table::-webkit-scrollbar{
+    display: none;
+}
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .summary-box {
+      font-size: 20px;
+      padding: 15px;
+    }
+  
+    .user-table th,
+    .user-table td {
+      padding: 10px 8px;
+      font-size: 14px;
+    }
+    
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard-container {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 1.25rem;
+    }
+  
+    .summary-box {
+      font-size: 18px;
+      padding: 12px;
+    }
+  
+    .user-table-container {
+      padding: 15px;
+    }
+  
+    .user-table th,
+    .user-table td {
+      font-size: 13px;
+    }
+  }
+  

@@ -1,0 +1,69 @@
+.Mealcontainer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.meal-planning-samples {
+  width: 650px;
+  padding: 3.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meal-planning-samples article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.meal-planning-samples h2 {
+  color: #000;
+  font-size: 2rem;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.meal-planning-samples table {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  text-align: left;
+}
+
+.meal-planning-samples thead tr td,
+.meal-planning-samples tbody tr td {
+  padding: 0.75rem 1rem;
+}
+
+.meal-planning-samples td:nth-child(1) {
+  width: 200px;
+}
+
+.meal-planning-samples td:nth-child(2) {
+  width: 400px;
+}
+
+.heading-row {
+  color: #f8f8f8;
+  background-color: #6f55f2;
+  font-weight: 500;
+}
+
+.total {
+  background-color: rgb(215, 215, 215);
+}
+
+.total td {
+  font-weight: 600;
+}
+
+.plan-row {
+  background-color: rgb(238, 238, 238);
+}

@@ -1,0 +1,212 @@
+/* Base Styles */
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1143px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 30px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+.top-bar .back-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.top-bar h2 {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.top-bar span {
+  font-size: 14px;
+  color: #888;
+}
+
+.image-section {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.image-section video {
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Workout and Rest Phase Styles */
+.top-bar h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.rest-next {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.rest-next p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.rest-next h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e88e5;
+}
+
+/* Timer Display */
+.timer-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.timer-display .pause-btn{
+  width: 150px;
+}
+
+.timer-display .skip-btn{
+  width: 150px;
+  height:60px ;
+}
+.timer-display h1 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Button Group */
+.useButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px;
+  margin: 20px 0;
+
+}
+.useButton button{
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #6f55f2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+/* .useButton .next-btn .pause-btn {
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} */
+
+.useButton button:hover {
+  background-color: #7061b8;
+}
+/*  */
+
+.pause-btn, .next-btn , .skip-btn {
+  width: 48%;
+}
+
+   .skip-btn{ height: 45px;
+    margin-top: 20px;
+   }
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  .top-bar h2 {
+    font-size: 22px;
+  }
+
+  .top-bar .back-icon {
+    font-size: 20px;
+  }
+
+  .timer-display h1 {
+    font-size: 30px;
+  }
+
+  .useButton {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .useButton button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .skip-btn {
+    margin-top: 10px;
+  }
+
+  .image-section video {
+    max-height: 300px;
+  }
+
+  .rest-next h3 {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .top-bar h2 {
+    font-size: 20px;
+  }
+
+  .top-bar .back-icon {
+    font-size: 18px;
+  }
+
+  .useButton {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .useButton button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .timer-display h1 {
+    font-size: 26px;
+  }
+
+  .image-section video {
+    max-height: 250px;
+  }
+
+  .rest-next h3 {
+    font-size: 16px;
+  }
+}

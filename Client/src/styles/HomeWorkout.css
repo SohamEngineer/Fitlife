@@ -1,0 +1,130 @@
+.workout-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #fefefe;
+  max-height: 100vh;
+  max-width: 1143px;
+  margin: 0 auto;
+  color: rgb(13, 12, 12);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 60px;
+}
+
+.day-selector {
+  width: 300px;
+  background-color: #faf7f7;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-right: 2px solid #e0dddd;
+}
+.day-selector::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+.day-head h2 {
+  margin-bottom: 20px;
+}
+.day-btn {
+  background-color: #dbd6d6;
+  color: rgb(4, 4, 4);
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.day-btn.active,
+.day-btn:hover {
+  background-color: #32cd32;
+  color: black;
+}
+
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+  background-color: #fcfafa;
+}
+.content-area::-webkit-scrollbar {
+  display: none;
+}
+.content-area h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+.workout-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.start-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+/* 🔽 Responsive Design for Mobile Devices */
+@media screen and (max-width: 768px) {
+  .workout-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .day-selector {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 2px solid #e0dddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .day-head {
+    display: none;
+  }
+
+  .day-btn {
+    margin-right: 10px;
+    margin-bottom: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .content-area {
+    padding: 10px;
+  }
+
+  .workout-list {
+    flex-direction: column;
+    overflow-x: hidden;
+    gap: 10px;
+  }
+}

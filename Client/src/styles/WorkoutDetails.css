@@ -1,0 +1,129 @@
+/* Workout Detail Container */
+.workout-detail-container {
+    width: 90%;
+    max-width: 1143px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.workout-detail-container:hover {
+    transform: scale(1.02);
+}
+
+.workout-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+}
+
+.workout-image {
+    position: relative;
+    width: 50%;
+    height: 300px;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.workout-image video {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.workout-description h3, .workout-benefits h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.workout-description p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+
+.workout-benefits ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.workout-benefits li {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    color: #555;
+}
+
+.workout-benefits li strong {
+    color: #4a90e2;
+}
+
+.back-button {
+    top: 1rem;
+    left: 1rem;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #222;
+    color: #4a90e2;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    color: #333;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .workout-detail-container {
+        padding: 1rem;
+    }
+
+    .workout-title {
+        font-size: 2rem;
+    }
+
+    .workout-description h3, .workout-benefits h3 {
+        font-size: 1.6rem;
+    }
+
+    .workout-description p {
+        font-size: 1rem;
+    }
+
+    .workout-benefits li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .workout-title {
+        font-size: 1.8rem;
+    }
+
+    .workout-description h3, .workout-benefits h3 {
+        font-size: 1.4rem;
+    }
+
+    .workout-description p {
+        font-size: 0.9rem;
+    }
+
+    .workout-benefits li {
+        font-size: 0.9rem;
+    }
+
+    .back-button {
+        font-size: 1.5rem;
+    }
+}

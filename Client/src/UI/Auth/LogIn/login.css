@@ -1,0 +1,151 @@
+/* Reset basics */
+
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .image-container {
+    margin-right: 32px;
+    margin-bottom: 0;
+  }
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.social-buttons button {
+  padding: 10px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.social-buttons .facebook {
+  background-color: #1877f2;
+}
+
+.social-buttons .twitter {
+  background-color: #1da1f2;
+}
+
+.social-buttons .linkedin {
+  background-color: #0077b5;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.divider hr {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+.divider span {
+  margin: 0 10px;
+  color: #777;
+}
+
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.register-link a {
+  color: #e53935;
+  text-decoration: none;
+}
+
+/* .footer {
+  background-color: #1877f2;
+  color: white;
+  text-align: center;
+  padding: 16px;
+} */
+
+.footer-icons {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footer-icons a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+}

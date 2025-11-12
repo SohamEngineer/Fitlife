@@ -1,0 +1,141 @@
+/* Layout */
+.fitness-profile {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #7b5ff1, #47378b);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+.sidebar-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-bottom: 15px;
+}
+
+.sidebar h2 {
+  margin: 10px 0 5px;
+}
+
+.sidebar p {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+.sidebar-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 6px;
+  background: white;
+  color: #47378b;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar-btn:hover {
+  background: #ddd;
+}
+
+/* Main Content */
+.profile-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.profile-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  color: #47378b;
+}
+
+.profile-header p {
+  color: #555;
+}
+
+/* Stats */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h3 {
+  font-size: 1.5rem;
+  color: #7b5ff1;
+  margin-bottom: 5px;
+}
+
+/* Goals */
+.profile-goals {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.profile-goals h2 {
+  margin-bottom: 10px;
+  color: #47378b;
+}
+
+.profile-goals ul {
+  list-style: none;
+  padding: 0;
+}
+
+.profile-goals li {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+/* Activity */
+.profile-activity {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.profile-activity h2 {
+  margin-bottom: 10px;
+  color: #47378b;
+}
+
+.profile-activity ul {
+  list-style: none;
+  padding: 0;
+}
+
+.profile-activity li {
+  margin: 5px 0;
+  font-size: 1rem;
+}

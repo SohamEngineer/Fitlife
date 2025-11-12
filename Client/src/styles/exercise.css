@@ -1,0 +1,108 @@
+.exercise__top {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.exercise__top h2 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.exercise__top p {
+    color: var(--heading-color);
+    font-size: 1rem;
+    line-height: 28px;
+}
+
+.exercise__wrapper {
+    background: var(--bg-gradient);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px; /* Adjusted padding for better spacing */
+}
+
+.exercise__item {
+    display: flex;
+    align-items: center;
+    column-gap: 1.2rem;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Limit width for larger screens */
+    margin: 10px; /* Add margin for spacing */
+    padding: 10px;
+}
+
+.exercise__icon {
+    width: 20%;
+    height: auto; /* Adjust height to auto for better responsiveness */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.exercise__icon img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.exercise__content {
+    width: 80%;
+}
+
+.exercise__content h4 {
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.exercise__content p {
+    font-size: 1rem;
+    color: #ffffffb8;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .exercise__wrapper {
+        padding: 20px; /* Reduce padding on smaller screens */
+    }
+
+    .exercise__item {
+        flex-direction: column; /* Stack icon and text vertically */
+        align-items: center; /* Center align items */
+        width: 100%; /* Full width on small screens */
+        max-width: none; /* Remove max-width restriction */
+        text-align: center; /* Center text for better readability */
+    }
+
+    .exercise__icon {
+        width: 50%; /* Adjust icon size for better visibility */
+        margin-bottom: 10px; /* Add margin below icon */
+    }
+}
+
+@media (max-width: 480px) {
+    .exercise__top h2 {
+        font-size: 2rem; /* Smaller title on very small screens */
+    }
+
+    .exercise__top p {
+        font-size: 0.9rem; /* Smaller paragraph text */
+    }
+
+    .exercise__content h4 {
+        font-size: 1.2rem; /* Smaller heading */
+    }
+
+    .exercise__content p {
+        font-size: 0.9rem; /* Smaller paragraph text */
+    }
+
+    .exercise__icon {
+        width: 20%; /* Adjust icon size for very small screens */
+    }
+}

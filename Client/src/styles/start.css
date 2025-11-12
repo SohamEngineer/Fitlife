@@ -1,0 +1,72 @@
+.start__wrapper {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 3rem;
+    align-items: center;
+    margin-top: -100px;
+}
+
+ .start__content {
+    width: 50%; /* Default width for larger screens */
+}
+.start__img {
+    width: 100%;
+}
+
+.start__img img {
+    width: 100%;
+    height: auto; /* This keeps the image proportion correct */
+    display: block; /* Removes random bottom whitespace */
+    object-fit: cover; /* Optional, makes it look clean if container resizing happens */
+}
+
+
+.start__content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.start__content p {
+    color: var(--heading-color);
+    font-size: 1.1rem;
+    line-height: 28px;
+    margin-bottom: 50px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .start__wrapper {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        margin-top: 0; /* Reset margin for smaller screens */
+    }
+
+    .start__img, .start__content {
+        width: 100%; /* Full width on smaller screens */
+        text-align: center; /* Center text for better readability */
+    }
+
+    .start__content h2 {
+        font-size: 2rem; /* Smaller title on smaller screens */
+    }
+
+    .start__content p {
+        font-size: 1rem; /* Smaller paragraph text */
+        line-height: 24px; /* Adjust line height for readability */
+        margin-bottom: 30px; /* Adjust margin for spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    .start__content h2 {
+        margin-top: 10px;
+        font-size: 1.5rem; /* Further reduce title size */
+    }
+
+
+    .start__content p {
+        font-size: 0.9rem; /* Further reduce paragraph text size */
+    }
+
+   
+}

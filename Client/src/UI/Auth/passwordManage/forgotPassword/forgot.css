@@ -1,0 +1,80 @@
+.forgot-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.forgot-title {
+  margin-bottom: 20px;
+}
+
+.forgot-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.forgot-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.forgot-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.forgot-button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-message {
+  margin-top: 15px;
+  color: green;
+}
+.lottie-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lottie-loader p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+}
+.back-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #cbcdcf;
+  color: rgb(32, 96, 192);
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.back-btn:hover {
+  background-color: #bdbfc2;
+}
+
+
+
+
+.forgoticon{
+font-size: 30px;
+margin-bottom: 20px;
+}

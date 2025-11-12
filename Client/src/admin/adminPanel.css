@@ -1,0 +1,129 @@
+/* adminPanel.css */
+
+
+.admin-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Fixed Sidebar */
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #1e1e2f;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.admin-sidebar h2 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f4f6f9;
+}
+
+.admin-sidebar .line {
+  height: 2px;
+  background: #444;
+  margin: 10px 0 20px;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  margin: 15px 0;
+}
+
+.admin-sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+  background-color: #4c4cff;
+}
+
+/* Content Area */
+.admin-content {
+  margin-left: 250px;
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #f4f6f9;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-avter {
+  display: flex;
+  align-items: center;
+  
+}
+.admin-avter .Avatar{
+background-color: #1e1e2f;
+width: 60px;
+height: 60px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    /* width: 100%; */
+    height: auto;
+    position: relative;
+  }
+
+  .admin-content {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .admin-sidebar ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .admin-sidebar li {
+    margin: 10px 5px;
+  }
+
+  .admin-sidebar a {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-heading {
+    flex-direction: column;
+  }
+
+  .admin-avter {
+    margin-top: 10px;
+  }
+
+  .admin-sidebar a {
+    font-size: 14px;
+  }
+}
