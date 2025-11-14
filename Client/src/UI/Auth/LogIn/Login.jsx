@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
-import "./login.css";
+import "../../../styles/login.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { useAuth } from "../../../utils/AuthContext";
+import { loginUserApi } from "../../../api/auth.api";
+import { useAuth } from "../../../context/authcontext";
+
 const Login = () => {
   const [loginuser, setLoginUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { login } = useAuth();
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,24 +20,21 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8000/api/auth/login", loginuser);
+      const { token, user } = await loginUserApi(loginuser);
 
-      if (res.status === 200) {
-        const { token, user } = res.data;
+      localStorage.setItem("token", token);
+      sessionStorage.setItem("user", JSON.stringify(user));
 
-        // Store token and user data
-        localStorage.setItem("token", token);
-        sessionStorage.setItem("user", JSON.stringify(user));
+      login(user);
 
-        // Set auth user in context
-        login(user);
-
-        Swal.fire("Success!", "Login successful", "success");
-
-        navigate("/");
-      }
+      Swal.fire("Success!", "Login successful", "success");
+      navigate("/");
     } catch (error) {
-      Swal.fire("Error!", error.response?.data?.message || "Login failed", "error");
+      Swal.fire(
+        "Error!",
+        error?.response?.data?.message || "Login failed",
+        "error"
+      );
     }
   };
 
@@ -48,27 +45,24 @@ const Login = () => {
           <div className="image-container">
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-              alt="Illustration of hands working on a computer"
+              alt="Illustration"
             />
           </div>
+
           <div className="form-container">
             <h2>Sign in with</h2>
             <div className="social-buttons">
-              <button className="facebook">
-                <FaFacebookF />
-              </button>
-              <button className="twitter">
-                <FaTwitter />
-              </button>
-              <button className="linkedin">
-                <FaLinkedinIn />
-              </button>
+              <button className="facebook"><FaFacebookF /></button>
+              <button className="twitter"><FaTwitter /></button>
+              <button className="linkedin"><FaLinkedinIn /></button>
             </div>
+
             <div className="divider">
               <hr />
               <span>Or</span>
               <hr />
             </div>
+
             <form onSubmit={handleLogin}>
               <input
                 type="email"
@@ -76,32 +70,32 @@ const Login = () => {
                 placeholder="Email address"
                 value={loginuser.email}
                 onChange={handleChange}
-                
               />
+
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
                 value={loginuser.password}
                 onChange={handleChange}
-                
               />
+
               <div className="options">
-                
-               <NavLink to="/forgotpassword"> Forgot password?</NavLink>
+                <NavLink to="/forgotpassword">Forgot password?</NavLink>
               </div>
+
               <button type="submit" className="login-btn">
                 LOGIN
               </button>
             </form>
+
             <div className="register-link">
               <span>
                 Don't have an account?{" "}
-                <NavLink to="/signup">
-                  Register
-                </NavLink>
+                <NavLink to="/signup">Register</NavLink>
               </span>
             </div>
+
           </div>
         </div>
       </div>

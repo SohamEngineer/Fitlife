@@ -1,7 +1,12 @@
 import React from 'react'
 import "../../styles/pricing.css"
+import { useNavigate } from 'react-router-dom'
 
 const Pricing = () => {
+const navigate=useNavigate();
+    const handleClick=()=>{
+    navigate("/payment");
+    }
   return <section id='membership'>
     <div className="container">
     <div className="pricing__top">
@@ -25,7 +30,7 @@ const Pricing = () => {
                     <li><span><i class="ri-checkbox-blank-circle-fill"></i></span>Demo online classes</li>
                 </ul>
 
-                <button className='register__btn'>Buy Now</button>
+                <button className='register__btn' onClick={handleClick}>Buy Now</button>
             </div>
         </div>
 
@@ -45,7 +50,7 @@ const Pricing = () => {
                     <li><span><i class="ri-checkbox-blank-circle-fill"></i></span>Free access to our gym centers</li>
                 </ul>
 
-                <button className='register__btn'>Buy Now</button>
+                <button className='register__btn' onClick={handleClick}>Buy Now</button>
             </div>
         </div>
 
@@ -64,7 +69,7 @@ const Pricing = () => {
                     <li><span><i class="ri-checkbox-blank-circle-fill"></i></span>Free online classes</li>
                 </ul>
 
-                <button className='register__btn'>Buy Now</button>
+                <button className='register__btn' onClick={handleClick}>Buy Now</button>
             </div>
         </div>
     </div>

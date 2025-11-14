@@ -1,11 +1,12 @@
 import "./App.css";
 import { useEffect } from "react";
 import Aos from "aos";
-import Footer from "./layout/Footer";
-import Header from "./layout/Header";
+import Footer from "./layout/footer";
+import Header from "./layout/header";
 import AllRoutes from "./route/route";
-import { AuthProvider, useAuth } from "./utils/AuthContext";
-import AdminRouter from "./admin/adminRouter";
+// import { AuthProvider, useAuth } from "./utils/AuthContext";
+import { AuthProvider, useAuth } from "./context/authcontext";
+import AdminRouter from "./admin/pages/adminrouter";
 
 function AppWrapper() {
   const { authUser } = useAuth();
@@ -50,6 +51,7 @@ function App() {
       </AuthProvider>
     // </Router>
   );
+
 }
 
 export default App;

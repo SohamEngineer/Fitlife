@@ -1,106 +1,100 @@
-import React, { useRef, useState } from 'react';
-import { FaUser, FaEnvelope, FaLock, FaKey } from 'react-icons/fa';
-import './signup.css';
-import axios from "axios";
-import Swal from 'sweetalert2';
+import React, { useRef, useState } from "react";
+import { FaUser, FaEnvelope, FaLock, FaKey } from "react-icons/fa";
+import "../../../styles/signup.css";
+import Swal from "sweetalert2";
+
+import { signupUserApi } from "../../../api/auth.api";
+import { validateSignup } from "../../../utils/signup.validator";
 
 const Signup = () => {
+  // Controlled input state
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  const validName = useRef(null);
-  const validEmail = useRef(null);
-  const validPassword = useRef(null);
-  const validConfirmPassword = useRef(null);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+  // Refs used for auto-focusing invalid fields
+  const inputRefs = {
+    name: useRef(null),
+    email: useRef(null),
+    password: useRef(null),
+    confirmPassword: useRef(null),
   };
 
+  // Handle controlled input updates
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle signup form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name) {
-      Swal.fire("Error", "Please Enter Your Name", "error");
-      validName.current?.focus();
-      return;
-    }
-  
-    if (!formData.email) {
-      Swal.fire("Error", "Please Enter Your Email", "error");
-      validEmail.current?.focus();
-      return;
-    }
-  
-    if (!formData.password) {
-      Swal.fire("Error", "Please Enter Password", "error");
-      validPassword.current?.focus();
-      return;
-    }
-  
-    if (formData.password !== formData.confirmPassword) {
-      Swal.fire("Error", "Passwords do not match", "error");
-      validConfirmPassword.current?.focus();
+
+    // 1. Validate input
+    const validation = validateSignup(formData);
+
+    if (!validation.ok) {
+      Swal.fire("Error", validation.message, "error");
+
+      // focus the invalid input field
+      inputRefs[validation.field]?.current?.focus();
       return;
     }
 
-  if (!formData.name || !formData.email || !formData.password) {
-    Swal.fire("Error", "All fields are required", "error");
-    return;
-  }
-
-  if (formData.password !== formData.confirmPassword) {
-    Swal.fire("Error", "Passwords do not match", "error");
-    return;
-  }
-
-  try {
+    // 2. Prepare payload
     const payload = {
       name: formData.name,
       email: formData.email,
       password: formData.password,
     };
 
-    const responce = await axios.post("http://localhost:8000/api/auth/signup", payload);
+    // 3. API call
+    try {
+      await signupUserApi(payload);
 
-    if (responce.status === 201) {
-      Swal.fire("Success", "Registration Successful", "success");
-      setFormData({ name: "", email: "", password: "", confirmPassword: "" });
-    }
-  } catch (error) {
-    if (error.response?.status === 409) {
-      Swal.fire("Error", "Email already exists. Please login.", "error");
-    } else {
-      Swal.fire("Error", "Registration Failed. Try Again.", "error");
-    }
-  }
-};
+      Swal.fire("Success", "Registration successful!", "success");
 
+      // Reset form after success
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      // Handle API errors
+      const message =
+        error.response?.status === 409
+          ? "Email already exists. Please login."
+          : "Registration failed. Try again.";
+
+      Swal.fire("Error", message, "error");
+    }
+  };
 
   return (
     <div className="signup-container">
       <div className="signup-form">
         <h2 className="form-title">Sign up</h2>
+
         <form onSubmit={handleSubmit}>
+          {/* Name Input */}
           <div className="input-group">
-            <FaUser className=" signupicon" />
+            <FaUser className="signupicon" />
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              ref={validName}
+              ref={inputRefs.name}
             />
           </div>
 
+          {/* Email Input */}
           <div className="input-group">
             <FaEnvelope className="signupicon" />
             <input
@@ -109,10 +103,11 @@ const Signup = () => {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              ref={validEmail}
+              ref={inputRefs.email}
             />
           </div>
 
+          {/* Password Input */}
           <div className="input-group">
             <FaLock className="signupicon" />
             <input
@@ -121,10 +116,11 @@ const Signup = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              ref={validPassword}
+              ref={inputRefs.password}
             />
           </div>
 
+          {/* Confirm Password Input */}
           <div className="input-group">
             <FaKey className="signupicon" />
             <input
@@ -133,7 +129,7 @@ const Signup = () => {
               placeholder="Repeat your password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              ref={validConfirmPassword}
+              ref={inputRefs.confirmPassword}
             />
           </div>
 
@@ -143,9 +139,10 @@ const Signup = () => {
         </form>
       </div>
 
+      {/* Illustration Image */}
       <div className="signup-image">
         <img
-          alt="Illustration of a person with geometric shapes"
+          alt="Illustration"
           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
         />
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import "./profile.css";
+import "../../styles/profile.css";
 
 const FitnessProfile = () => {
   const user = {

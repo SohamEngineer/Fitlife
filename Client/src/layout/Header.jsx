@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "../styles/header.css";
 import logo from "../assets/img/Health___Fitness.png";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../utils/AuthContext";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { useAuth } from "../context/authcontext";
 
 const nav__links = [
   {

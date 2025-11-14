@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/img/Health___Fitness.png";
 import { companyLinks,livingLinks,quickLinks } from "../data/footer-box";
-import FooterBox from "../component/footerBox";
+import FooterBox from "../component/footerbox";
 import "../styles/footer.css"
 const Footer = () => {
   const year = new Date().getFullYear();

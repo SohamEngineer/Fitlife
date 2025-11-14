@@ -1,0 +1,72 @@
+.payment-container {
+  width: 400px;
+  margin: 80px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.payment-container h2 {
+  color: #222;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: #4c8bf5;
+  outline: none;
+  box-shadow: 0 0 3px #4c8bf5;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.pay-btn {
+  background: linear-gradient(135deg, #4c8bf5, #2563eb);
+  border: none;
+  padding: 12px 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pay-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+}
