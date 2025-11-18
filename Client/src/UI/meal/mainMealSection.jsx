@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-// import MealPlanning from '';
 import "../../styles/mainmeal.css";
-import Caloricalculator from './caloricalculator';
-import MealPlanning from '../../styles/mealplaining.css';
+import CalorieCalculator from './caloricalculator';
+import MealPlanning from './mealPlaining';
 
 function MainMealSection() {
   const [activeFeature, setActiveFeature] = useState("mealPlanning");
@@ -30,12 +29,12 @@ function MainMealSection() {
       {/* Conditionally render components based on active feature */}
       {activeFeature === 'mealPlanning' && (
         <div className="meal-feature">
-          <MealPlanning />
+          <MealPlanning/>
         </div>
       )}
       {activeFeature === 'calorieCalculator' && (
         <div className="meal-feature">
-          <Caloricalculator />
+          <CalorieCalculator />
         </div>
       )}
       {activeFeature === 'feature3' && (

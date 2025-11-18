@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../styles/header.css";
-import logo from "../assets/img/Health___Fitness.png";
-import { NavLink } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import { useAuth } from "../context/authcontext";
+import "../../styles/header.css";
+import logo from "../../assets/img/Health___Fitness.png";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../context/authcontext";
+import UserAvatar from "../userAvater";
 
 const nav__links = [
   {
-    path: "/",
+    path: "/home",
     display: "Home",
   },
   {
@@ -36,20 +34,16 @@ const nav__links = [
 ];
 
 const Header = () => {
-  const { authUser , logout } = useAuth();
+  const { authUser, logout } = useAuth();
   const [activeItem, setActiveItem] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
+const [anchorEl, setAnchorEl] = useState(null);
+
 
   // Fallback: get from localStorage if authUser  not available
-  const storedUser  = JSON.parse(localStorage.getItem("user"));
-  const user = authUser  || storedUser ;
-
-  const handleAvatarClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const user = authUser || storedUser;
+const navigate=useNavigate();
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -62,22 +56,8 @@ const Header = () => {
   const handleLogout = () => {
     logout();
     handleClose();
+    navigate("/");
   };
-
-  const handleLogoutDialogOpen = () => {
-    setOpenLogoutDialog(true);
-    handleClose();
-  };
-
-  const handleLogoutDialogClose = () => {
-    setOpenLogoutDialog(false);
-  };
-
-  const confirmLogout = () => {
-    handleLogout();
-    handleLogoutDialogClose();
-  };
-
   const headerRef = useRef(null);
   const headerFunc = () => {
     if (
@@ -101,7 +81,7 @@ const Header = () => {
         <div className="nav__wrapper">
           <div className="logo">
             <div className="logo__img">
-              <img src={logo} alt="Health & Fitness Logo" className=""/>
+              <img src={logo} alt="Health & Fitness Logo" className="" />
             </div>
             <h2 className="text-red-600">Health & Fitness</h2>
           </div>
@@ -140,65 +120,24 @@ const Header = () => {
                 </li>
               ))}
               {/* Add Log In button to mobile menu */}
-              
+
             </ul>
           </div>
 
           <div className="nav__right">
             {user ? (
-              <>
-                <Avatar
-                  onClick={handleAvatarClick}
-                  style={{ cursor: "pointer" }}
-                >
-                  {user.name?.charAt(0).toUpperCase() || "U"}
-                </Avatar>
-                <Menu
-                  anchorEl={anchorEl}
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>
-                    <NavLink to="/userprofile">Profile</NavLink>
-                  </MenuItem>
-                  <MenuItem onClick={handleLogoutDialogOpen}>
-                    Logout
-                  </MenuItem>
-                </Menu>
-              </>
+<UserAvatar user={user} onLogout={handleLogout} />
             ) : (
-              <NavLink to="/login">
+              <NavLink to="/">
                 <button className="register__btn">Log In</button>
               </NavLink>
             )}
-
             <span className="mobile__menu" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               <i className="ri-menu-line"></i>
             </span>
           </div>
         </div>
       </div>
-
-      {/* Logout Confirmation Dialog */}
-      <Dialog
-        open={openLogoutDialog}
-        onClose={handleLogoutDialogClose}
-      >
-        <DialogTitle>Confirm Logout</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to log out?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleLogoutDialogClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={confirmLogout} color="primary">
-            Logout
-          </Button>
-        </DialogActions>
-      </Dialog>
     </header>
   );
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import heroImg from "../../assets/img/model1-removebg-preview.png";
 import "../../styles/hero.css";
+import { Button } from '../../component/common/button';
+// import Button from '../../component/common/button';
 
 const Hero = () => {
   return (
@@ -18,7 +20,7 @@ const Hero = () => {
             </p>
 
             <div className="hero__btns" data-aos-duration="1200" data-aos="fade-up" data-aos-delay="200">
-              <button className='register__btn'>Get Started</button>
+              <Button className='register__btn'>Get Started</Button>
               <button className='watch_btn'>
                 <span><i className="ri-play-fill"></i></span>Watch Video
               </button>

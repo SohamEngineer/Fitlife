@@ -18,7 +18,7 @@
   }
   
   .Trackcontainer .highlights {
-    color: #32cd32;
+    color: var(--primary-color);
   }
   
   button {
@@ -31,15 +31,13 @@
     padding: 4px 10px;
     font-size: 20px;
     border: none;
-    background-color: #32cd32;
+    background-color:var(--primary-color);
     color: white;
     border-radius: 5px;
     transition: 0.3s;
   }
   
-  h2 button:hover {
-    background-color: #28a428;
-  }
+
   
   /* Form Styles */
   .trackform {
@@ -91,7 +89,8 @@
   }
   
   thead {
-    background-color: #0072ff;
+  background-color: var(--primary-color);
+;
     color: white;
   }
   

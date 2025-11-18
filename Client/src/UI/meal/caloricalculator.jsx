@@ -1,118 +1,139 @@
-import React, { useState } from 'react';
-import '../../styles/caloricalculator.css';
+import React, { useState } from "react";
+import "../../styles/caloricalculator.css";
+import { ACTIVITY_LEVELS } from "../../constants/activityLevels";
+import { calculateCalories } from "../../utils/calculatecalories";
 
-function Caloricalculator() {
+function CalorieCalculator() {
   const [form, setForm] = useState({
-    age: '',
-    gender: '',
-    height: '',
-    weight: '',
-    activity: '1.2',
+    age: "",
+    gender: "",
+    height: "",
+    weight: "",
+    activity: "1.2",
   });
 
   const [calories, setCalories] = useState(null);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCalculateSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { age, gender, height, weight, activity } = form;
-
-    if (!age || !gender || !height || !weight || !activity) {
-      alert('Please fill all fields');
-      return;
+    // Minimal validation
+    for (let key in form) {
+      if (!form[key]) return alert("All fields are required.");
     }
 
-    const w = parseFloat(weight);
-    const h = parseFloat(height);
-    const a = parseInt(age);
-    let bmr = 0;
-
-    if (gender === 'male') {
-      bmr = 10 * w + 6.25 * h - 5 * a + 5;
-    } else {
-      bmr = 10 * w + 6.25 * h - 5 * a - 161;
-    }
-
-    const calorieNeeds = bmr * parseFloat(activity);
-    setCalories(calorieNeeds.toFixed(2));
+    setCalories(calculateCalories(form));
   };
 
   const handleReset = () => {
-    setForm({ age: '', gender: '', height: '', weight: '', activity: '1.2' });
+    setForm({ age: "", gender: "", height: "", weight: "", activity: "1.2" });
     setCalories(null);
   };
 
   return (
-    
     <section className="calorie-calculator">
       <h2>Calorie Calculator</h2>
-      <p className="about-calculator">
-        This Calorie Calculator can be used to estimate the number of calories a person needs to consume each day.
-      </p>
 
-      <form className="calculator-container" onSubmit={handleCalculateSubmit}>
+      <form className="calculator-container" onSubmit={handleSubmit}>
+        {/* Group 1 */}
         <div className="field-group">
           <div className="Caloriinput-group">
             <label htmlFor="age">Age</label>
-            <input type="number" max="80" min="15" name="age" required placeholder="15 - 80" value={form.age} onChange={handleChange} />
+            <input
+              type="number"
+              name="age"
+              min="15"
+              max="80"
+              value={form.age}
+              onChange={handleChange}
+              placeholder="15 - 80"
+            />
           </div>
 
           <div className="Caloriinput-group">
             <label>Gender</label>
             <div className="radio-group">
-              <input type="radio" id="male" name="gender" value="male" checked={form.gender === 'male'} onChange={handleChange} />
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                checked={form.gender === "male"}
+                onChange={handleChange}
+              />
               <label htmlFor="male">Male</label>
-              <input type="radio" id="female" name="gender" value="female" checked={form.gender === 'female'} onChange={handleChange} />
+
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                checked={form.gender === "female"}
+                onChange={handleChange}
+              />
               <label htmlFor="female">Female</label>
             </div>
           </div>
         </div>
 
+        {/* Group 2 */}
         <div className="field-group">
           <div className="Caloriinput-group">
-            <label htmlFor="height">Height</label>
-            <input type="number" max="230" min="130" name="height" required placeholder="130 - 230" value={form.height} onChange={handleChange} />
-            <span>cm</span>
+            <label htmlFor="height">Height (cm)</label>
+            <input
+              type="number"
+              name="height"
+              min="130"
+              max="230"
+              value={form.height}
+              onChange={handleChange}
+            />
           </div>
+
           <div className="Caloriinput-group">
-            <label htmlFor="weight">Weight</label>
-            <input type="number" max="160" min="40" name="weight" required placeholder="40 - 160" value={form.weight} onChange={handleChange} />
-            <span>kg</span>
+            <label htmlFor="weight">Weight (kg)</label>
+            <input
+              type="number"
+              name="weight"
+              min="40"
+              max="160"
+              value={form.weight}
+              onChange={handleChange}
+            />
           </div>
         </div>
 
+        {/* Activity */}
         <div className="Caloriinput-group">
           <label htmlFor="activity">Activity Level</label>
           <select name="activity" value={form.activity} onChange={handleChange}>
-            <option value="1.2">Sedentary (little or no exercise)</option>
-            <option value="1.375">Lightly active (light exercise)</option>
-            <option value="1.55">Moderately active (moderate exercise)</option>
-            <option value="1.725">Very active (hard exercise)</option>
-            <option value="1.9">Extra active (very hard exercise)</option>
+            {ACTIVITY_LEVELS.map((level) => (
+              <option key={level.value} value={level.value}>
+                {level.label}
+              </option>
+            ))}
           </select>
         </div>
 
+        {/* Buttons */}
         <div className="calculator-buttons">
-          <button type="reset" onClick={handleReset}>Clear values</button>
-          <button type="submit">
-            <i className="fa-solid fa-circle-chevron-right" />
-            <span>Calculate</span>
-          </button>
+          <button type="button" onClick={handleReset}>Clear</button>
+          <button type="submit">Calculate</button>
         </div>
       </form>
 
       {calories && (
-        <p style={{ marginTop: "1rem", fontSize: "18px", fontWeight: "600" }}>
-          Estimated Daily Calories: <span style={{ color: "#ff6600" }}>{calories} kcal</span>
+        <p className="result">
+          Estimated Daily Calories: <span>{calories} kcal</span>
         </p>
       )}
     </section>
-
   );
 }
 
-export default Caloricalculator;
+export default CalorieCalculator;

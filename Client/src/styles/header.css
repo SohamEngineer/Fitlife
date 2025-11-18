@@ -3,7 +3,6 @@
     height: 70px;
     line-height: 70px;
 }
-
 .nav__wrapper {
     display: flex;
     align-items: center;
@@ -126,12 +125,12 @@
 
 .dropdown li a.active {
     background-color: transparent;
-    color: rgb(66, 17, 245);
+    color: var(--primary-color);
     font-weight: bold;
 }
 
 .dropdown li a:hover {
-    color: #007bff;
+    color: var(--primary-color)
 }
 
 /* Mobile Menu Styles */

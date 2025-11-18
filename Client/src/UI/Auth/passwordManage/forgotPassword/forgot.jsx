@@ -52,7 +52,7 @@ const ForgotPassword = () => {
   };
 
   // Navigate back to login
-  const goToLogin = () => navigate("/login");
+  const goToLogin = () => navigate("/");
 
   return (
     <div className="forgot-container">

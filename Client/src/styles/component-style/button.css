@@ -1,0 +1,12 @@
+.register__btn {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    font-family: var(--font-name);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}

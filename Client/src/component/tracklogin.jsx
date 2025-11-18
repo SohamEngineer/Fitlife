@@ -25,11 +25,11 @@ const TrackLogin = () => {
         clearInterval(timerInterval);
       },
     }).then(() => {
-      navigate("/login");
+      navigate("/");
     });
   }, [navigate]);
 
-  return null; // This page shows only the modal
+  return null;
 };
 
 export default TrackLogin;

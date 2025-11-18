@@ -28,7 +28,7 @@ const Login = () => {
       login(user);
 
       Swal.fire("Success!", "Login successful", "success");
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       Swal.fire(
         "Error!",
