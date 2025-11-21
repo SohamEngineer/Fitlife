@@ -1,6 +1,4 @@
 import React from "react";
-import signupimage from "../../../assets/img/signup.png";
-import logo from "../../../assets/img/Health___Fitness.png";
 import { GoArrowUpRight } from "react-icons/go";
 import MuiSelect from "../../../component/common/select";
 import "./style/signup.css"
@@ -8,6 +6,7 @@ import { useSignup } from "./hook/useSignup";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../../component/common/input";
 import { Button } from "../../../component/common/button";
+import { assets } from "../../../assets/img/assets";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const Signup = () => {
       <div className="signup-right">
         <div className="signup-top">
           <div className="signup-title">
-            <img src={logo} alt="logo" />
+            <img src={assets.logo} alt="logo" />
             <span>Health & Fitness</span>
           </div>
 
@@ -205,7 +204,7 @@ const Signup = () => {
       </div>
 
       <div className="signup-left">
-        <img src={signupimage} alt="signup" />
+        <img src={assets.signup} alt="signup" />
         <h1>Accelerate your skills for competitive exams</h1>
         <p>Our personalized step-by-step guidance for the entire test preparation.</p>
       </div>

@@ -1,8 +1,7 @@
 import React from 'react'
-import trainer from "../../assets/img/trainer.png"
 import "../../styles/start.css";
 import { Button } from '../../component/common/button';
-// import Button from "../common/Button"; // <-- ADD THIS
+import { assets } from '../../assets/img/assets';
 
 const Start = () => {
   return (
@@ -10,7 +9,7 @@ const Start = () => {
       <div className="container">
         <div className="start__wrapper">
           <div className="start__img">
-            <img src={trainer} alt="err" />
+            <img src={assets.trainer} alt="err" />
           </div>
 
           <div className="start__content" data-aos-duration="1100" data-aos="fade-right">

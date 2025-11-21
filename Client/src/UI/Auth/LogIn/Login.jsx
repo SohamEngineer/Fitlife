@@ -1,9 +1,9 @@
 import React from "react";
+import { assets } from "../../../assets/img/assets";
 import "./style/login.css";
 import { NavLink } from "react-router-dom";
 import InputField from "../../../component/common/input";
 import { Button } from "../../../component/common/button";
-import logo from "../../../assets/img/Health___Fitness.png";
 import { useLogin } from "./hook/useLogin";
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
         <div className="content-container">
           <div className="form-container">
             <div className="login-title">
-              <img src={logo} alt="logo" />
+              <img src={assets.logo} alt="logo" />
               <span>Health & Fitness</span>
             </div>
 

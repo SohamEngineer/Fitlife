@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/header.css";
-import logo from "../../assets/img/Health___Fitness.png";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../context/authcontext";
 import UserAvatar from "../userAvater";
+import { assets } from "../../assets/img/assets";
 
 const nav__links = [
   {
@@ -81,7 +81,7 @@ const navigate=useNavigate();
         <div className="nav__wrapper">
           <div className="logo">
             <div className="logo__img">
-              <img src={logo} alt="Health & Fitness Logo" className="" />
+              <img src={assets.logo} alt="Health & Fitness Logo" className="" />
             </div>
             <h2 className="text-red-600">Health & Fitness</h2>
           </div>

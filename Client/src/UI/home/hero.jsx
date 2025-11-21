@@ -1,8 +1,8 @@
 import React from 'react';
-import heroImg from "../../assets/img/model1-removebg-preview.png";
+// import heroImg from "../../assets/img/model1-removebg-preview.png";
 import "../../styles/hero.css";
 import { Button } from '../../component/common/button';
-// import Button from '../../component/common/button';
+import { assets } from '../../assets/img/assets';
 
 const Hero = () => {
   return (
@@ -33,7 +33,7 @@ const Hero = () => {
                 <div className="box-02">
                   <div className="box-03">
                     <div className="box__img">
-                      <img src={heroImg} alt="Hero" />
+                      <img src={assets.home_model} alt="Hero" />
                     </div>
                   </div>
                 </div>

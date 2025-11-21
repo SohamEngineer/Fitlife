@@ -1,9 +1,9 @@
 import React from "react";
-import logo from "../../assets/img/Health___Fitness.png";
 import "../../styles/footer.css";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import { assets } from "../../assets/img/assets";
 
 
 
@@ -16,7 +16,7 @@ const Footer = () => {
         {/* LEFT SECTION */}
         <div className="footer-left">
         <div className="logobox">
-            <img src={logo} alt="logo" className="footer-logo" />
+            <img src={assets.logo} alt="logo" className="footer-logo" />
             <span>Health & Fitness</span>
         </div>
 
