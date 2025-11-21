@@ -70,7 +70,7 @@ const HomeWorkout = () => {
       <div className="content-area">
         <h2>Home Workout</h2>
 
-        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+        <select value={filter} onChange={(e) => setFilter(e.target.value)} className="select">
           <option value="Full Body">Full Body</option>
           <option value="Upper">Upper</option>
           <option value="Lower">Lower</option>

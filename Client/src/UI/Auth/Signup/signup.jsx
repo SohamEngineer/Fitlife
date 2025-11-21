@@ -1,150 +1,218 @@
-import React, { useRef, useState } from "react";
-import { FaUser, FaEnvelope, FaLock, FaKey } from "react-icons/fa";
-import "../../../styles/signup.css";
-import Swal from "sweetalert2";
-
-import { signupUserApi } from "../../../api/auth.api";
-import { validateSignup } from "../../../utils/signup.validator";
+import React from "react";
+import signupimage from "../../../assets/img/signup.png";
+import logo from "../../../assets/img/Health___Fitness.png";
+import { GoArrowUpRight } from "react-icons/go";
+import MuiSelect from "../../../component/common/select";
+import "./style/signup.css"
+import { useSignup } from "./hook/useSignup";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  // Controlled input state
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  // Refs used for auto-focusing invalid fields
-  const inputRefs = {
-    name: useRef(null),
-    email: useRef(null),
-    password: useRef(null),
-    confirmPassword: useRef(null),
-  };
-
-  // Handle controlled input updates
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  // Handle signup form submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // 1. Validate input
-    const validation = validateSignup(formData);
-
-    if (!validation.ok) {
-      Swal.fire("Error", validation.message, "error");
-
-      // focus the invalid input field
-      inputRefs[validation.field]?.current?.focus();
-      return;
-    }
-
-    // 2. Prepare payload
-    const payload = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-    };
-
-    // 3. API call
-    try {
-      await signupUserApi(payload);
-
-      Swal.fire("Success", "Registration successful!", "success");
-
-      // Reset form after success
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } catch (error) {
-      // Handle API errors
-      const message =
-        error.response?.status === 409
-          ? "Email already exists. Please login."
-          : "Registration failed. Try again.";
-
-      Swal.fire("Error", message, "error");
-    }
-  };
+  const navigate=useNavigate();
+  const handleNavigate=()=>{
+    navigate("/");
+  }
+  const {
+    step,
+    setStep,
+    formData,
+    fitnessData,
+    inputRefs,
+    handleStep1Change,
+    handleStep2Change,
+    handleNext,
+    handleSubmit,
+  } = useSignup();
 
   return (
-    <div className="signup-container">
-      <div className="signup-form">
-        <h2 className="form-title">Sign up</h2>
+    <div className="signup-wrapper">
+      <div className="signup-right">
+        <div className="signup-top">
+          <div className="signup-title">
+            <img src={logo} alt="logo" />
+            <span>Health & Fitness</span>
+          </div>
 
-        <form onSubmit={handleSubmit}>
-          {/* Name Input */}
-          <div className="input-group">
-            <FaUser className="signupicon" />
+          <p className="signup-footer" onClick={() => handleNavigate()}>
+            Already have an account? Sign in <GoArrowUpRight />
+          </p>
+        </div>
+
+        <div className="signup-paragraph">
+          <p>
+            {step === 1
+              ? "Complete your basic details to get started"
+              : "Add fitness information for personalized plans"}
+          </p>
+        </div>
+
+        {step === 1 && (
+          <form className="signup-form" onSubmit={handleNext}>
+            <label className="signup-field-label">Full Name</label>
             <input
-              type="text"
               name="name"
-              placeholder="Your Name"
+              type="text"
+              placeholder="Enter Your Name."
+              className="signup-input"
               value={formData.name}
-              onChange={handleChange}
+              onChange={handleStep1Change}
               ref={inputRefs.name}
             />
-          </div>
 
-          {/* Email Input */}
-          <div className="input-group">
-            <FaEnvelope className="signupicon" />
+            <label className="signup-field-label">Email</label>
             <input
-              type="email"
               name="email"
-              placeholder="Your Email"
+              type="email"
+              placeholder="Enter Your Email"
+              className="signup-input"
               value={formData.email}
-              onChange={handleChange}
+              onChange={handleStep1Change}
               ref={inputRefs.email}
             />
-          </div>
 
-          {/* Password Input */}
-          <div className="input-group">
-            <FaLock className="signupicon" />
+            <label className="signup-field-label">Password</label>
             <input
-              type="password"
               name="password"
-              placeholder="Password"
+              type="password"
+              placeholder="Enter Your Password."
+              className="signup-input"
               value={formData.password}
-              onChange={handleChange}
+              onChange={handleStep1Change}
               ref={inputRefs.password}
             />
-          </div>
 
-          {/* Confirm Password Input */}
-          <div className="input-group">
-            <FaKey className="signupicon" />
+            <label className="signup-field-label">Repeat Password</label>
             <input
-              type="password"
               name="confirmPassword"
-              placeholder="Repeat your password"
+              type="password"
+              placeholder="Enter Password Again"
+              className="signup-input"
               value={formData.confirmPassword}
-              onChange={handleChange}
+              onChange={handleStep1Change}
               ref={inputRefs.confirmPassword}
             />
-          </div>
 
-          <button type="submit" className="submit-btn">
-            REGISTER
-          </button>
-        </form>
+            <button className="signup-btn">Next</button>
+          </form>
+        )}
+
+        {step === 2 && (
+          <form className="fitness_form" onSubmit={handleSubmit}>
+            <label className="signup-field-label">Gender</label>
+            <MuiSelect
+              name="gender"
+              value={fitnessData.gender}
+              onChange={handleStep2Change}
+              options={[
+                { value: "", label: "Select" },
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+              ]}
+            />
+
+            <label className="signup-field-label">Date of Birth</label>
+            <input
+              name="dateOfBirth"
+              type="date"
+              className="signup-input"
+              value={fitnessData.dateOfBirth}
+              onChange={handleStep2Change}
+            />
+
+            <div className="input-row">
+              <div className="input-box">
+                <label className="signup-field-label">Height (cm)</label>
+                <input
+                  name="height"
+                  type="text"
+                  placeholder="Enter Height.."
+                  className="signup-input"
+                  value={fitnessData.height}
+                  onChange={handleStep2Change} />
+
+              </div>
+              <div className="input-box">
+                <label className="signup-field-label">Weight (kg)</label>
+                <input
+                  name="weight"
+                  type="text"
+                  placeholder="Enter Weight.."
+                  className="signup-input"
+                  value={fitnessData.weight}
+                  onChange={handleStep2Change} />
+
+              </div>
+            </div>
+
+            <label className="signup-field-label">Fitness Level</label>
+            <MuiSelect
+              name="fitnessLevel"
+              value={fitnessData.fitnessLevel}
+              onChange={handleStep2Change}
+              options={[
+                { value: "", label: "Select" },
+                { value: "beginner", label: "Beginner" },
+                { value: "intermediate", label: "Intermediate" },
+                { value: "advanced", label: "Advanced" },
+              ]}
+            />
+
+            <label className="signup-field-label">Goal</label>
+            <MuiSelect
+              name="goal"
+              value={fitnessData.goal}
+              onChange={handleStep2Change}
+              options={[
+                { value: "", label: "Select" },
+                { value: "weight_loss", label: "Weight Loss" },
+                { value: "muscle_gain", label: "Muscle Gain" },
+                { value: "maintain", label: "Maintain" },
+                { value: "endurance", label: "Endurance" },
+                { value: "strength", label: "Strength" },
+              ]}
+            />
+
+            <label className="signup-field-label">Workout Preference</label>
+            <MuiSelect
+              name="workoutPreference"
+              value={fitnessData.workoutPreference}
+              onChange={handleStep2Change}
+              options={[
+                { value: "", label: "Select" },
+                { value: "home", label: "Home" },
+                { value: "gym", label: "Gym" },
+                { value: "both", label: "Both" },
+              ]}
+            />
+
+            <label className="signup-field-label">Body Fat %</label>
+            <input
+              name="bodyFat"
+              type="text"
+              className="signup-input"
+              value={fitnessData.bodyFat}
+              onChange={handleStep2Change}
+            />
+            <label className="signup-field-label">Daily Activity Level</label>
+            <MuiSelect
+              name="dailyActivityLevel"
+              value={fitnessData.dailyActivityLevel}
+              onChange={handleStep2Change}
+              options={[{ value: "sedentary", label: "Sedentary" },
+              { value: "light", label: "Light" },
+              { value: "moderate", label: "Moderate" },
+              { value: "active", label: "Active" },
+              { value: "very_active", label: "Very Active" },
+              ]} />
+            <button className="signup-btn">Complete Register</button>
+          </form>
+        )}
       </div>
 
-      {/* Illustration Image */}
-      <div className="signup-image">
-        <img
-          alt="Illustration"
-          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-        />
+      <div className="signup-left">
+        <img src={signupimage} alt="signup" />
+        <h1>Accelerate your skills for competitive exams</h1>
+        <p>Our personalized step-by-step guidance for the entire test preparation.</p>
       </div>
     </div>
   );

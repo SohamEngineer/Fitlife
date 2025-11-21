@@ -7,9 +7,22 @@ const JWT_SECURITY_KEY = process.env.JWT_SECRET || "soham@33"; // move to .env l
 // SIGNUP
 export const signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name,
+  email,
+  password,
+  gender,
+  dateOfBirth,
+  height,
+  weight,
+  fitnessLevel,
+  goal,
+  workoutPreference,
+  bodyFat,
+  dailyActivityLevel } = req.body;
 
-    if (!name || !email || !password)
+    if (!name || !email || !password || !gender ||!dateOfBirth || !height
+      || !weight || !fitnessLevel || !goal || !workoutPreference || !dailyActivityLevel
+    )
       return res.status(400).json({ message: "All fields are required" });
 
     const existingUser = await User.findOne({ email });
@@ -18,8 +31,20 @@ export const signup = async (req, res) => {
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ name, email, password: hashPassword });
-    await newUser.save();
+const newUser = new User({
+      name,
+      email,
+      password: hashPassword,
+      gender,
+      dateOfBirth,
+      height,
+      weight,
+      fitnessLevel,
+      goal,
+      workoutPreference,
+      bodyFat: bodyFat || null,
+      dailyActivityLevel: dailyActivityLevel || "sedentary",
+    });    await newUser.save();
 
     return res.status(201).json({ message: "User registered successfully!" });
 

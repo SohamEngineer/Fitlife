@@ -14,3 +14,29 @@ export const validateSignup = (formData) => {
 
   return { ok: true };
 };
+export const Step2Validation = (fitnessData) => {
+  if (!fitnessData.gender)
+    return { ok: false, message: "Select gender", field: "gender" };
+
+  if (!fitnessData.dateOfBirth)
+    return { ok: false, message: "Enter birth date", field: "dateOfBirth" };
+
+  if (!fitnessData.height)
+    return { ok: false, message: "Enter height", field: "height" };
+
+  if (!fitnessData.weight)
+    return { ok: false, message: "Enter weight", field: "weight" };
+
+  if (!fitnessData.fitnessLevel)
+    return { ok: false, message: "Select fitness level", field: "fitnessLevel" };
+
+  if (!fitnessData.goal)
+    return { ok: false, message: "Select goal", field: "goal" };
+
+  if (!fitnessData.workoutPreference)
+    return { ok: false, message: "Select workout preference", field: "workoutPreference" };
+
+  // 🔥 THIS WAS MISSING → THE REAL BUG
+  return { ok: true };
+};
+
