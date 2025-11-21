@@ -1,0 +1,17 @@
+.signup-input {
+  width: 100%;
+  padding: 12px;
+  padding-left: 8px;
+  border: 1px solid #ccc;
+  background-color: transparent;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  margin-bottom: 10px
+}
+
+.signup-input:focus {
+  border-color: #610ecd;
+  border-width: 2px;
+  outline: none;
+}

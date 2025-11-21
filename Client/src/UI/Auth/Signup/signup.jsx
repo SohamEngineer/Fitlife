@@ -6,15 +6,16 @@ import MuiSelect from "../../../component/common/select";
 import "./style/signup.css"
 import { useSignup } from "./hook/useSignup";
 import { useNavigate } from "react-router-dom";
+import InputField from "../../../component/common/input";
+import { Button } from "../../../component/common/button";
 
 const Signup = () => {
-  const navigate=useNavigate();
-  const handleNavigate=()=>{
+  const navigate = useNavigate();
+  const handleNavigate = () => {
     navigate("/");
   }
   const {
     step,
-    setStep,
     formData,
     fitnessData,
     inputRefs,
@@ -48,51 +49,47 @@ const Signup = () => {
 
         {step === 1 && (
           <form className="signup-form" onSubmit={handleNext}>
-            <label className="signup-field-label">Full Name</label>
-            <input
+            <InputField
+            label={"Full Name"}
               name="name"
               type="text"
               placeholder="Enter Your Name."
-              className="signup-input"
               value={formData.name}
               onChange={handleStep1Change}
               ref={inputRefs.name}
             />
 
-            <label className="signup-field-label">Email</label>
-            <input
+            <InputField
+            label={"Email"}
               name="email"
               type="email"
               placeholder="Enter Your Email"
-              className="signup-input"
               value={formData.email}
               onChange={handleStep1Change}
               ref={inputRefs.email}
             />
 
-            <label className="signup-field-label">Password</label>
-            <input
+            <InputField
+            label={"Password"}
               name="password"
               type="password"
               placeholder="Enter Your Password."
-              className="signup-input"
               value={formData.password}
               onChange={handleStep1Change}
               ref={inputRefs.password}
             />
 
-            <label className="signup-field-label">Repeat Password</label>
-            <input
+            <InputField
+            label={"Repeat Password"}
               name="confirmPassword"
               type="password"
               placeholder="Enter Password Again"
-              className="signup-input"
               value={formData.confirmPassword}
               onChange={handleStep1Change}
               ref={inputRefs.confirmPassword}
             />
 
-            <button className="signup-btn">Next</button>
+            <Button className="signup-btn">Next</Button>
           </form>
         )}
 
@@ -110,8 +107,8 @@ const Signup = () => {
               ]}
             />
 
-            <label className="signup-field-label">Date of Birth</label>
             <input
+            label={"Date of Birth"}
               name="dateOfBirth"
               type="date"
               className="signup-input"
@@ -121,23 +118,21 @@ const Signup = () => {
 
             <div className="input-row">
               <div className="input-box">
-                <label className="signup-field-label">Height (cm)</label>
-                <input
+                <InputField
+                label={"Height (cm)"}
                   name="height"
                   type="text"
                   placeholder="Enter Height.."
-                  className="signup-input"
                   value={fitnessData.height}
                   onChange={handleStep2Change} />
 
               </div>
               <div className="input-box">
-                <label className="signup-field-label">Weight (kg)</label>
-                <input
+                <InputField
+                label={"Weight (kg)"}
                   name="weight"
                   type="text"
                   placeholder="Enter Weight.."
-                  className="signup-input"
                   value={fitnessData.weight}
                   onChange={handleStep2Change} />
 
@@ -204,7 +199,7 @@ const Signup = () => {
               { value: "active", label: "Active" },
               { value: "very_active", label: "Very Active" },
               ]} />
-            <button className="signup-btn">Complete Register</button>
+            <Button className="signup-btn">Complete Register</Button>
           </form>
         )}
       </div>

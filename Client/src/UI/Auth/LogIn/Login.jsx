@@ -1,81 +1,41 @@
-import React, { useState } from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
-import "../../../styles/login.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { loginUserApi } from "../../../api/auth.api";
-import { useAuth } from "../../../context/authcontext";
+import React from "react";
+import "./style/login.css";
+import { NavLink } from "react-router-dom";
+import InputField from "../../../component/common/input";
+import { Button } from "../../../component/common/button";
+import logo from "../../../assets/img/Health___Fitness.png";
+import { useLogin } from "./hook/useLogin";
 
 const Login = () => {
-  const [loginuser, setLoginUser] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
-  const { login } = useAuth();
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoginUser({ ...loginuser, [name]: value });
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      const { token, user } = await loginUserApi(loginuser);
-
-      localStorage.setItem("token", token);
-      sessionStorage.setItem("user", JSON.stringify(user));
-
-      login(user);
-
-      Swal.fire("Success!", "Login successful", "success");
-      navigate("/home");
-    } catch (error) {
-      Swal.fire(
-        "Error!",
-        error?.response?.data?.message || "Login failed",
-        "error"
-      );
-    }
-  };
+  const { loginuser, handleChange, handleLogin } = useLogin();
 
   return (
     <div className="page-container">
       <div className="main-container">
         <div className="content-container">
-          <div className="image-container">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-              alt="Illustration"
-            />
-          </div>
-
           <div className="form-container">
-            <h2>Sign in with</h2>
-            <div className="social-buttons">
-              <button className="facebook"><FaFacebookF /></button>
-              <button className="twitter"><FaTwitter /></button>
-              <button className="linkedin"><FaLinkedinIn /></button>
-            </div>
-
-            <div className="divider">
-              <hr />
-              <span>Or</span>
-              <hr />
+            <div className="login-title">
+              <img src={logo} alt="logo" />
+              <span>Health & Fitness</span>
             </div>
 
             <form onSubmit={handleLogin}>
-              <input
-                type="email"
+              <InputField
+                label="Email"
                 name="email"
+                type="email"
                 placeholder="Email address"
+                className="input-form"
                 value={loginuser.email}
                 onChange={handleChange}
               />
 
-              <input
-                type="password"
+              <InputField
+                label="Password"
                 name="password"
+                type="password"
                 placeholder="Password"
+                className="input-form"
                 value={loginuser.password}
                 onChange={handleChange}
               />
@@ -84,9 +44,9 @@ const Login = () => {
                 <NavLink to="/forgotpassword">Forgot password?</NavLink>
               </div>
 
-              <button type="submit" className="login-btn">
+              <Button type="submit" className="signup-btn">
                 LOGIN
-              </button>
+              </Button>
             </form>
 
             <div className="register-link">

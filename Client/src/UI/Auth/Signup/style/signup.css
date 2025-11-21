@@ -132,37 +132,16 @@
   align-items: center;
 }
 
-.signup-input {
-  width: 100%;
-  padding: 12px;
-  padding-left: 8px;
-  border: 1px solid #ccc;
-  background-color: transparent;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s ease;
 
-}
-
-.signup-input:focus {
-  border-color: #610ecd;
-  border-width: 2px;
-  outline: none;
-}
 
 /* === Button === */
 .signup-btn {
   width: 100%;
   padding: 14px 0;
-  background-color: var(--primary-color);
-  color: white;
   font-size: 18px;
   font-weight: 700;
-  border: none;
-  cursor: pointer;
-  margin: 2rem 0rem 1rem 0rem;
-  border-radius: 4px;
   transition: background-color 0.2s ease;
+  margin: 18px 0 0 0;
 }
 
 .fitness_form {
