@@ -24,7 +24,6 @@
 .meal-planning-samples h2 {
   color: #000;
   font-size: 2rem;
-  font-family: 'Raleway', sans-serif;
   margin-bottom: 2rem;
   font-weight: 800;
   letter-spacing: 1.5px;
@@ -32,7 +31,6 @@
 
 .meal-planning-samples table {
   font-size: 16px;
-  font-family: 'Poppins', sans-serif;
   width: 100%;
   text-align: left;
 }

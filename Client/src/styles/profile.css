@@ -2,7 +2,6 @@
 .fitness-profile {
   display: flex;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
   background: #f9fafb;
   color: #333;
 }

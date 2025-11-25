@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import "../../styles/mealplaining.css"
+import "./style/mealplaining.css"
 import MealPlanningSamples from '../../data/maeaplainingdata';
 
 const MealPlanning = () => {

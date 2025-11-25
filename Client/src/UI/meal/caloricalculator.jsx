@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/caloricalculator.css";
+import "./style/caloricalculator.css";
 import { ACTIVITY_LEVELS } from "../../constants/activityLevels";
 import { calculateCalories } from "../../utils/calculatecalories";
 

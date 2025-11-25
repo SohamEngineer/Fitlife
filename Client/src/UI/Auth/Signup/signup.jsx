@@ -88,7 +88,7 @@ const Signup = () => {
               ref={inputRefs.confirmPassword}
             />
 
-            <Button className="signup-btn">Next</Button>
+            <Button className="signup-btn" type="submit">Next</Button>
           </form>
         )}
 
@@ -106,11 +106,10 @@ const Signup = () => {
               ]}
             />
 
-            <input
+            <InputField
             label={"Date of Birth"}
               name="dateOfBirth"
               type="date"
-              className="signup-input"
               value={fitnessData.dateOfBirth}
               onChange={handleStep2Change}
             />
@@ -198,7 +197,7 @@ const Signup = () => {
               { value: "active", label: "Active" },
               { value: "very_active", label: "Very Active" },
               ]} />
-            <Button className="signup-btn">Complete Register</Button>
+            <Button className="signup-btn" type="submit">Complete Register</Button>
           </form>
         )}
       </div>

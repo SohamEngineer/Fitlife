@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../../../styles/forgot.css";
+import "./style/forgot.css";
 
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,8 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { FaArrowLeft, FaLock } from "react-icons/fa6";
 import { validateForgotEmail } from "../../../../utils/password.validator";
 import { sendOtpApi } from "../../../../api/password.api";
+import { Button } from "../../../../component/common/button";
+import InputField from "../../../../component/common/input";
 
 const ForgotPassword = () => {
   // Controlled input state
@@ -55,6 +57,7 @@ const ForgotPassword = () => {
   const goToLogin = () => navigate("/");
 
   return (
+    <div className="page-container">
     <div className="forgot-container">
 
       {/* Icon */}
@@ -78,23 +81,24 @@ const ForgotPassword = () => {
       ) : (
         // Form UI
         <form className="forgot-form" onSubmit={handleSendOtp}>
-          <input
+          <InputField
+            lable="Email"
             type="email"
             placeholder="Enter your email"
             value={email}
-            className="forgot-input"
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button type="submit" className="forgot-button">
+          <Button type="submit" >
             Submit
-          </button>
+          </Button>
 
           <button type="button" onClick={goToLogin} className="back-btn">
             <FaArrowLeft /> Back to Login
           </button>
         </form>
       )}
+    </div>
     </div>
   );
 };

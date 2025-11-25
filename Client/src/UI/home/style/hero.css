@@ -2,8 +2,6 @@
     display: flex;
     justify-content: space-between;
     padding-top: 50px;
-    /* Desktop styles unchanged */
-    /* Flex wrap only in smaller screens to keep original desktop layout */
 }
 
 .hero__content .section__title {
@@ -89,7 +87,7 @@
 }
 
 .box__img img {
-    width: 123%;
+    width: 100%;
 }
 
 .heart__rate {

@@ -51,7 +51,7 @@
     color: var(--primary-color);
 }
 
-.nav__right {
+.nav-right-avter{
     display: flex;
     align-items: center;
     column-gap: 1.5rem;
@@ -144,7 +144,10 @@
     cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .nav-right-avter{
+        display: none;
+    }
     .menu {
         display: none; /* Hide menu by default on mobile */
         flex-direction: column;
@@ -165,10 +168,11 @@
     }
 
     .nav__right {
-        flex-direction: column; /* Stack items vertically */
+        flex-direction: row; /* Stack items vertically */
     }
 
     .nav__item {
         padding: 10px; /* Add padding for better touch targets */
     }
 }
+

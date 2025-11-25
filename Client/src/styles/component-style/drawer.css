@@ -1,0 +1,102 @@
+.drawer-header {
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+    border-bottom: 2px solid #dcd9d9;
+
+}
+
+.drawer-header i {
+    font-size: 25px;
+}
+
+.drawer-logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.drawer-logo img {
+    width: 70px;
+    height: 70px;
+}
+
+.drawer-logo h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1b075c;
+}
+
+/* ============================
+   BASE LINK STYLING
+   ============================ */
+.drawer-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    display: block;
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.25s ease;
+}
+
+/* Active link gradient */
+.drawer-link.active {
+    font-weight: 700;
+    background: linear-gradient(260deg,
+            rgb(73, 49, 155) 0%,
+            rgba(103, 78, 230, 1) 65%);
+    color: white;
+    border-radius: 10px;
+}
+
+/* Dropdown arrow color */
+.drawer-parent-button svg {
+    color: #444;
+}
+
+
+/* Child link spacing */
+.drawer-child-button {
+    padding-left: 28px !important;
+}
+
+
+/* ============================
+   LIST ITEM BUTTON (global)
+   ============================ */
+.MuiListItemButton-root {
+    border-radius: 10px;
+    margin: 2px 8px;
+    transition: background 0.25s ease;
+}
+
+
+/* Profile menu wrapper */
+.profile-menu {
+    padding: 10px 10px;
+}
+
+/* Profile link */
+.profile-menu .drawer-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 10px;
+}
+
+
+
+/* Active profile link */
+.profile-menu .drawer-link.active {
+    background: linear-gradient(260deg,
+            rgba(27, 7, 92, 1) 0%,
+            rgba(103, 78, 230, 1) 65%);
+    color: white !important;
+}
+
+.profile-menu .drawer-link.active {
+    color: white;
+
+}

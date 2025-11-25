@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/exercise.css";
+import "./style/exercise.css";
 import exerciseData from '../../data/exercise';
 import ExerciseCard from '../../component/exercisecard';
 

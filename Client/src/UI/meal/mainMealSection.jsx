@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../styles/mainmeal.css";
+import "./style/mainmeal.css";
 import CalorieCalculator from './caloricalculator';
 import MealPlanning from './mealPlaining';
 

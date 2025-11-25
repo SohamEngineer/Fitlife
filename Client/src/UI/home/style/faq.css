@@ -1,0 +1,75 @@
+/* ===== FAQ Container ===== */
+
+  .title h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-align: center;
+  color:var(--heading-color);
+}
+
+ .faq-paragraph{
+    margin: 0 auto;
+    color: var(--heading-color);
+    font-size: 1rem;
+    text-align: center;
+    line-height: 28px;
+    margin-bottom: 40px;
+}
+.faq-items {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.faq-items .MuiAccordion-root {
+  border-radius: 10px !important;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Shadow on hover */
+.faq-items .MuiAccordion-root:hover {
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
+  border-color: #ccc;
+}
+
+/* Accordion Header */
+.faq-items .MuiAccordionSummary-root {
+  padding: 10px 10px;
+  background: var(--image-background);
+}
+
+.faq-items .MuiAccordionSummary-content {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Accordion Content */
+.faq-items .MuiAccordionDetails-root {
+  padding: 18px 20px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 1200px) {
+  .faq-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+  }
+
+  .faq-container h1 {
+    font-size: 26px;
+  }
+  .faq-container .faq-paragraph{
+    width: 300px;
+  }
+}
+

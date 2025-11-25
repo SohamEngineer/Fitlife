@@ -30,6 +30,7 @@ import Track from '../UI/tracking/track';
 import TrackLogin from '../component/tracklogin';
 import HomeWorkout from '../UI/workout/home/homeworkout';
 import CalorieCalculator from '../UI/meal/caloricalculator';
+import About from '../UI/about/about';
 const AllRoutes = () => {
   const { authUser } = useAuth();
 
@@ -93,6 +94,14 @@ const AllRoutes = () => {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/about" 
+          element={
+            <ProtectedRoute>
+              <About />
             </ProtectedRoute>
           } 
         />
@@ -196,7 +205,7 @@ const AllRoutes = () => {
 
         {/* Profile + Payment */}
         <Route 
-          path="/userprofile" 
+          path="/profile" 
           element={
             <ProtectedRoute>
               <ProfilePage />

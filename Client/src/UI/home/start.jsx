@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../styles/start.css";
+import "./style/start.css";
 import { Button } from '../../component/common/button';
 import { assets } from '../../assets/img/assets';
 

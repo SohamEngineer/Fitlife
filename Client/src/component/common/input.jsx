@@ -1,6 +1,7 @@
-import React from "react";
-import "../../styles/component-style/input.css"
-const InputField = ({
+import React, { forwardRef } from "react";
+import "../../styles/component-style/input.css";
+
+const InputField = forwardRef(({
   label,
   name,
   type = "text",
@@ -10,12 +11,13 @@ const InputField = ({
   className = "",
   inputClass = "",
   ...rest
-}) => {
+}, ref) => {
   return (
     <div className={`input-field-wrapper ${className}`}>
       {label && <label className="signup-field-label">{label}</label>}
 
       <input
+        ref={ref} 
         name={name}
         type={type}
         placeholder={placeholder}
@@ -26,6 +28,6 @@ const InputField = ({
       />
     </div>
   );
-};
+});
 
 export default InputField;

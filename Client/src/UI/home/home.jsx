@@ -2,6 +2,8 @@ import React from "react";
 import Hero from "./hero";
 import Exercise from "./exercise";
 import Start from "./start";
+import Faq from "./faq";
+import { fitnessFaqData } from "../../data/accordino";
 
 const Home = () => {
   return (
@@ -9,6 +11,7 @@ const Home = () => {
       <Hero />
       <Exercise />
       <Start />
+      <Faq items={fitnessFaqData} />
     </>
   );
 };
