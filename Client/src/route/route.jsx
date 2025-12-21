@@ -70,7 +70,13 @@ const AllRoutes = () => {
             </GuestRoute>
           } 
         />
-
+ <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } />
         {/* Public Auth pages (no need to block) */}
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
@@ -204,14 +210,14 @@ const AllRoutes = () => {
         />
 
         {/* Profile + Payment */}
-        <Route 
+        {/* <Route 
           path="/profile" 
           element={
             <ProtectedRoute>
               <ProfilePage />
             </ProtectedRoute>
           } 
-        />
+        /> */}
 
         <Route 
           path="/payment" 

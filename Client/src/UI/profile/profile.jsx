@@ -1,85 +1,72 @@
-import React from "react";
-import "../../styles/profile.css";
+import "./style/profile.css";
+import { useProfile } from "./hook/useProfile";
+import { assets } from "../../assets/img/assets";
+import { GoArrowLeft } from "react-icons/go";
+import { Button } from "../../component/common/button";
+
 
 const FitnessProfile = () => {
-  const user = {
-    name: "Soham Ata",
-    age: 21,
-    email: "soham@example.com",
-    location: "Kolkata, India",
-    avatar: "https://i.pravatar.cc/150?img=12",
-    bio: "Fitness enthusiast, focused on strength training and healthy eating.",
-    stats: {
-      weight: "70 kg",
-      height: "175 cm",
-      bmi: "22.9",
-      workouts: 145,
-      caloriesBurned: "75,000 kcal",
-    },
-    goals: ["Build muscle", "Lose fat", "Run 5K under 25 min"],
-  };
+  const { user, loading, error, handleNavigate, handlelogout } = useProfile();
 
+  if (loading) {
+    return <div className="loading">Loading profile...</div>;
+  }
+
+  if (error || !user) {
+    return <div className="error">Failed to load profile.</div>;
+  }
+
+  // ✅ SAFE to use user now
   return (
-    <div className="fitness-profile">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <img src={user.avatar} alt="Avatar" className="sidebar-avatar" />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-        <button className="sidebar-btn">Edit Profile</button>
-        <button className="sidebar-btn">Logout</button>
-      </aside>
+    <div className="container">
 
-      {/* Main Content */}
+      <button className="back">
+        <GoArrowLeft onClick={handleNavigate} />
+      </button>
+
       <main className="profile-content">
-        {/* Header */}
         <section className="profile-header">
           <h1>Welcome back, {user.name}! 🏋️</h1>
-          <p>{user.bio}</p>
+          <p>Fitness level: {user.fitnessLevel}</p>
         </section>
+        <aside className="sidebar">
+          <div className="profile_box">
+          <img
+            src={assets.soham}
+            alt="Avatar"
+            className="sidebar-avatar"
+          />
+          <div className="user_info">
+          <h2 className="name">{user.name}</h2>
+          <p>{user.email}</p>
+          </div>
+          </div>
+        <div className="button-box">
+   <Button className="sidebar-btn">Edit Profile</Button> 
+  <Button className="sidebar-btn logout" onClick={handlelogout}>Logout</Button> 
+  </div>
+        </aside>
 
-        {/* Stats */}
         <section className="profile-stats">
           <div className="stat-card">
-            <h3>{user.stats.weight}</h3>
-            <p>Weight</p>
+            <h3>{user.weight}</h3>
+            <p>Weight (kg)</p>
           </div>
-          <div className="stat-card">
-            <h3>{user.stats.height}</h3>
-            <p>Height</p>
-          </div>
-          <div className="stat-card">
-            <h3>{user.stats.bmi}</h3>
-            <p>BMI</p>
-          </div>
-          <div className="stat-card">
-            <h3>{user.stats.workouts}</h3>
-            <p>Workouts Completed</p>
-          </div>
-          <div className="stat-card">
-            <h3>{user.stats.caloriesBurned}</h3>
-            <p>Calories Burned</p>
-          </div>
-        </section>
 
-        {/* Goals */}
-        <section className="profile-goals">
-          <h2>Fitness Goals 🎯</h2>
-          <ul>
-            {user.goals.map((goal, index) => (
-              <li key={index}>✅ {goal}</li>
-            ))}
-          </ul>
-        </section>
+          <div className="stat-card">
+            <h3>{user.height}</h3>
+            <p>Height (cm)</p>
+          </div>
 
-        {/* Activity */}
-        <section className="profile-activity">
-          <h2>Recent Activity 📊</h2>
-          <ul>
-            <li>🏃 Ran 3 km - 200 kcal burned</li>
-            <li>💪 Upper body workout - 350 kcal burned</li>
-            <li>🚴 Cycling 10 km - 400 kcal burned</li>
-          </ul>
+          <div className="stat-card">
+            <h3>{user.bodyFat}%</h3>
+            <p>Body Fat</p>
+          </div>
+
+          <div className="stat-card">
+            <h3>{user.goal}</h3>
+            <p>Goal</p>
+          </div>
         </section>
       </main>
     </div>

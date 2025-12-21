@@ -23,7 +23,6 @@ const nav__links = [
 
 const Header = () => {
   const {
-    activeItem,
     user,
     handleItemClick,
     handleLogout,
@@ -87,6 +86,7 @@ const Header = () => {
 <div className="nav-right-avter">
   {user ? (
               <UserAvatar user={user} onLogout={handleLogout}  className="avater"/>
+              
             ) : (
               <NavLink to="/">
                 <button className="register__btn">Log In</button>

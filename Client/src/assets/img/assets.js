@@ -9,6 +9,7 @@ import home_model from "./home_model.png";
 import signup from "./signup.png";
 import trainer from "./trainer.png";
 import yoga from "./yoga-pose.png"
+import soham from "./soham_photo.jpg"
 
 export const assets = {
     logo,
@@ -21,5 +22,6 @@ export const assets = {
     home_model,
     signup,
     trainer,
-    yoga
+    yoga,
+    soham
 };

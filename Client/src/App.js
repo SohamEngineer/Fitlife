@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Aos from "aos";
 import AllRoutes from "./route/route";
 import { AuthProvider, useAuth } from "./context/authcontext";
-import AdminRouter from "./admin/pages/adminrouter";
+import AdminRouter from "./admin/route/adminrouter";
 function AppWrapper() {
   const { authUser } = useAuth();
   // ✅ Safe localStorage parse

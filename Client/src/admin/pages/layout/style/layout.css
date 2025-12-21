@@ -1,0 +1,185 @@
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #1e1e2f;
+  color: #ffffff;
+  padding: 20px;
+
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.admin-sidebar h2 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #f4f6f9;
+}
+
+.admin-sidebar .line {
+  height: 1px;
+  background: #3a3a4a;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   SIDEBAR MENU
+========================= */
+
+.sidebar-menu {
+  flex: 1; /* pushes footer to bottom */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 12px;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background-color: #4c4cff;
+}
+
+/* =========================
+   SIDEBAR FOOTER
+========================= */
+
+.sidebar-footer {
+  border-top: 1px solid #3a3a4a;
+  padding-top: 16px;
+}
+
+.footer-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-user .MuiAvatar-root {
+  width: 36px;
+  height: 36px;
+  background-color: #4c4cff;
+  font-size: 16px;
+}
+
+.user-name {
+  font-size: 14px;
+  color: #d1d5db;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Logout Button */
+.logout-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+
+  background: #4c4cff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+
+/* =========================
+   CONTENT AREA
+========================= */
+
+.admin-content {
+  margin-left: 250px;
+  flex: 1;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f4f6f9;
+  overflow-y: auto;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .admin-content {
+    margin-left: 0;
+  }
+
+  .sidebar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sidebar-menu li {
+    margin: 6px;
+  }
+
+  .sidebar-menu a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .sidebar-footer {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-heading {
+    justify-content: center;
+  }
+
+  .user-name {
+    font-size: 13px;
+  }
+}

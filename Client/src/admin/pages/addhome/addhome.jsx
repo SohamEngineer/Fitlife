@@ -1,66 +1,17 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
+import React from "react";
 // import { addHomeWorkout } from "../../../api/home.api";
-import "../style/addhome.css";
-import { addHomeWorkout } from "../../api/admin/home.api";
+import "./style/addhome.css";
+import useAddhome from "./hook/useAddhome";
 
 const AddHome = () => {
-  const [form, setForm] = useState({
-    title: "",
-    type: "",
-    day: "",
-    description: "",
-    caloryburn: "",
-    video: null,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: name === "video" ? files[0] : value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const { title, type, day, description, caloryburn, video } = form;
-
-    if (!title || !type || !day || !description || !caloryburn || !video) {
-      Swal.fire("Validation Error", "Please fill in all fields.", "warning");
-      return;
-    }
-
-    const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => formData.append(key, value));
-
-    try {
-      const data = await addHomeWorkout(formData);
-
-      Swal.fire("Success", data.message || "Workout added successfully!", "success");
-
-      setForm({
-        title: "",
-        type: "",
-        day: "",
-        description: "",
-        caloryburn: "",
-        video: null,
-      });
-
-      document.querySelector("form").reset();
-    } catch (err) {
-      Swal.fire("Error", err.message || "Something went wrong.", "error");
-    }
-  };
+  const { handleChange, handleSubmit } = useAddhome();
 
   return (
     <div className="add-form-container">
       <h2 className="form-title">Add Home Workout</h2>
 
       <form onSubmit={handleSubmit} className="add-form">
-        
+
         <input
           type="text"
           name="title"
@@ -72,6 +23,7 @@ const AddHome = () => {
         <div className="type-day-container">
           <select
             name="type"
+            defaultValue=""
             onChange={handleChange}
             className="form-input half-width"
           >
@@ -85,6 +37,7 @@ const AddHome = () => {
 
           <select
             name="day"
+            defaultValue=""
             onChange={handleChange}
             className="form-input half-width"
           >

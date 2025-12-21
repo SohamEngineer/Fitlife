@@ -1,42 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "../style/dashbord.css";
+import React from "react";
+import "./style/dashbord.css";
 
-import HomeWorkoutTable from "./fetchhome";
-import GymWorkoutTable from "./fetchgym";
-import { getAllUsers } from "../../api/admin/user.api";
+import HomeWorkoutTable from "../fetchworkout/fetchHome/fetchhome";
+import GymWorkoutTable from "../fetchworkout/fetchGym/fetchgym";
+import useDashboard from "./hook/useDashboard";
 
 const AdminDashboard = () => {
-  // Store user list
-  const [users, setUsers] = useState([]);
-
-  // Total user count
-  const [userCount, setUserCount] = useState(0);
-
-  // Fetch users on component mount
-  useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        const data = await getAllUsers();
-
-        /*
-          API returns:
-          {
-            users: [...],
-            totalUsers: number
-          }
-        */
-
-        setUsers(data.users);
-        setUserCount(data.totalUsers);
-
-      } catch (error) {
-        console.error("Failed to fetch users:", error);
-      }
-    };
-
-    loadUsers();
-  }, []);
-
+ const {users,userCount}=useDashboard();
   return (
     <div className="dashboard-container">
 

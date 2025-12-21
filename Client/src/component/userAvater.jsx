@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+
 import {
   Dialog,
   DialogActions,
@@ -10,25 +9,14 @@ import {
   DialogTitle,
   Button,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const UserAvatar = ({ user, onLogout }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
-
+const navigate=useNavigate();
   const handleAvatarClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    navigate("/profile")
   };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const openLogoutConfirm = () => {
-    setOpenLogoutDialog(true);
-    handleMenuClose();
-  };
-
   const closeLogoutConfirm = () => {
     setOpenLogoutDialog(false);
   };
@@ -45,13 +33,7 @@ const UserAvatar = ({ user, onLogout }) => {
         {user?.name?.charAt(0).toUpperCase() || "U"}
       </Avatar>
 
-      {/* Menu */}
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-        <MenuItem onClick={handleMenuClose}>
-          <NavLink to="/userprofile">Profile</NavLink>
-        </MenuItem>
-        <MenuItem onClick={openLogoutConfirm}>Logout</MenuItem>
-      </Menu>
+    
 
       {/* Logout Dialog */}
       <Dialog open={openLogoutDialog} onClose={closeLogoutConfirm}>

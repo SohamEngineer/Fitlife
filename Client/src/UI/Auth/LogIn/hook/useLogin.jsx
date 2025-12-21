@@ -1,42 +1,53 @@
-import  { useState } from "react";
+// pages/auth/login/hook/useLogin.js
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../../context/authcontext";
 import { loginUserApi } from "../../../../api/auth.api";
+
 export const useLogin = () => {
-    const [loginuser, setLoginUser] = useState({ email: "", password: "" });
-    const navigate = useNavigate();
-    const { login } = useAuth();
+  const [loginuser, setLoginUser] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setLoginUser({ ...loginuser, [name]: value });
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginUser((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-        try {
-            const { token, user } = await loginUserApi(loginuser);
+    try {
+      const response = await loginUserApi(loginuser);
 
-            localStorage.setItem("token", token);
-            sessionStorage.setItem("user", JSON.stringify(user));
+      const { token, user } = response;
 
-            login(user);
+      // HARD GUARD
+      if (!token) {
+        throw new Error("Token not returned from server");
+      }
 
-            Swal.fire("Success!", "Login successful", "success");
-            navigate("/home");
-        } catch (error) {
-            Swal.fire(
-                "Error!",
-                error?.response?.data?.message || "Login failed",
-                "error"
-            );
-        }
+      // Store token ONCE
+      localStorage.setItem("token", token);
+
+      // Store user via context
+      login(user);
+
+      Swal.fire("Success!", "Login successful", "success");
+      navigate("/home");
+    } catch (error) {
+      Swal.fire(
+        "Error!",
+        error?.response?.data?.message || error.message || "Login failed",
+        "error"
+      );
     }
-    return {
-        loginuser,
-        handleChange,
-        handleLogin,
-    }
-}
+  };
+
+  return {
+    loginuser,
+    handleChange,
+    handleLogin,
+  };
+};
