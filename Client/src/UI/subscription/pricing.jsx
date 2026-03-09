@@ -3,13 +3,14 @@ import "../../styles/pricing.css";
 import { useNavigate } from 'react-router-dom';
 import pricingPlans from '../../data/pricingplans';
 import PricingCard from '../../component/pricingcard';
+import useHostedPayment from './hook/usePrice';
 
 const Pricing = () => {
-  const navigate = useNavigate();
+  const { openPayment } = useHostedPayment();
 
-  const handleClick = () => {
-    navigate("/payment");
-  };
+  const handleClick = (planKey) => {
+  openPayment(planKey);
+};
 
   return (
     <section id="membership">
@@ -32,8 +33,9 @@ const Pricing = () => {
               price={plan.price}
               duration={plan.duration}
               features={plan.features}
+              planKey={plan.planKey}
               onBuy={handleClick}
-              highlight={index === 1} // Gold Member highlight
+              highlight={index === 1}
             />
           ))}
         </div>

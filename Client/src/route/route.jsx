@@ -8,7 +8,6 @@ import GuestRoute from './guestroute';
 
 // Layouts
 import AuthLayout from '../layout/authlayout';
-import MainLayout from '../layout/mainlayout';
 
 // Pages
 import Home from '../UI/home/home';
@@ -18,8 +17,6 @@ import VerifyOTP from '../UI/Auth/passwordManage/otp/otpverify';
 import ResetPassword from '../UI/Auth/passwordManage/reset/resetpassword';
 import MealPlanning from '../UI/meal/mealPlaining';
 import MainMealSection from '../UI/meal/mainMealSection';
-import WorkoutDetails from '../UI/workout/home/workoutdetails';
-import WorkoutPlayer from '../UI/workout/home/workoutplayer';
 import ProfilePage from '../UI/profile/profile';
 import Pricing from '../UI/subscription/pricing';
 import PaymentForm from '../UI/payment/payment';
@@ -31,6 +28,11 @@ import TrackLogin from '../component/tracklogin';
 import HomeWorkout from '../UI/workout/home/homeworkout';
 import CalorieCalculator from '../UI/meal/caloricalculator';
 import About from '../UI/about/about';
+import WorkoutDetails from '../component/workout-details/workout-details';
+import WorkoutPlayer from '../component/workout-player/workoutplayer';
+import WithFooterLayout from '../layout/with-footerLayout';
+import WithoutFooterLayout from '../layout/without-footerLayout';
+// import WorkoutDetails from '../component/workoutdetails';
 const AllRoutes = () => {
   const { authUser } = useAuth();
 
@@ -89,7 +91,7 @@ const AllRoutes = () => {
         - Shows Navbar + Footer
         - All pages inside this require login
       */}
-      <Route element={<MainLayout />}>
+      <Route element={<WithFooterLayout />}>
 
         {/*
           HOME PAGE (Protected)
@@ -135,7 +137,32 @@ const AllRoutes = () => {
           } 
         />
 
-        {/* Workout Routes */}
+       
+
+        {/* Profile + Payment */}
+        {/* <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          } 
+        /> */}
+
+        <Route 
+          path="/payment" 
+          element={
+            <ProtectedRoute>
+              <PaymentForm />
+            </ProtectedRoute>
+          } 
+        />
+
+      </Route>
+
+            <Route element={<WithoutFooterLayout />}>
+
+       {/* Workout Routes */}
         <Route 
           path="/homeworkout" 
           element={
@@ -208,27 +235,7 @@ const AllRoutes = () => {
             </ProtectedRoute>
           } 
         />
-
-        {/* Profile + Payment */}
-        {/* <Route 
-          path="/profile" 
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          } 
-        /> */}
-
-        <Route 
-          path="/payment" 
-          element={
-            <ProtectedRoute>
-              <PaymentForm />
-            </ProtectedRoute>
-          } 
-        />
-
-      </Route>
+        </Route>
 
     </Routes>
   );

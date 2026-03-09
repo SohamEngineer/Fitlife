@@ -6,7 +6,6 @@ export const useHeader = () => {
     const { authUser, logout } = useAuth();
     const [activeItem, setActiveItem] = useState(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -15,7 +14,7 @@ export const useHeader = () => {
 
     const navigate = useNavigate();
 
-    const handleClose = () => setAnchorEl(null);
+    const handleClose = () => {};
 
     const handleItemClick = (path) => {
         setActiveItem(path);

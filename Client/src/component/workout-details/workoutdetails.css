@@ -1,0 +1,396 @@
+
+:root {
+  --wd-bg-primary: #ffffff;
+  --wd-bg-secondary: #f6f7fb;
+  --wd-bg-white: #ffffff;
+
+  --wd-accent-primary: #ff6b35;
+  --wd-accent-secondary: #f59e0b;
+
+
+  --wd-text-secondary: #475569;
+  --wd-text-muted: #94a3b8;
+
+  --wd-border: #e5e7eb;
+
+
+  --wd-gradient-orange: linear-gradient(135deg,#ff6b35 0%,#f59e0b 100%);
+}
+
+
+/* Loading */
+
+.workout-details-loading {
+  min-height: 100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+}
+
+.loading-spinner-wrapper{
+  position:relative;
+}
+
+.loading-spinner{
+  width:64px;
+  height:64px;
+  border:4px solid var(--wd-bg-secondary);
+  border-top-color:var(--wd-accent-primary);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+.loading-pulse{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:80px;
+  height:80px;
+  border:4px solid var(--wd-accent-primary);
+  border-radius:50%;
+  opacity:0;
+  animation:pulse-ring 1.5s ease-out infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes pulse-ring{
+  0%{transform:translate(-50%,-50%) scale(.8);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(1.2);opacity:0}
+}
+
+.loading-text{
+  font-size:16px;
+  color:var(--wd-text-secondary);
+  font-weight:500;
+}
+
+/* Error */
+
+.workout-details-error{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+  text-align:center;
+}
+
+.error-icon{
+  font-size:72px;
+  margin-bottom:24px;
+}
+
+.error-title{
+  font-family:'Outfit',sans-serif;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.error-message{
+  font-size:16px;
+  color:var(--wd-text-secondary);
+  margin-bottom:32px;
+}
+
+.error-back-btn{
+  padding:12px 32px;
+  background:var(--wd-gradient-orange);
+  border:none;
+  border-radius:12px;
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* HERO */
+
+.workout-hero{
+  position:relative;
+  height:60vh;
+  min-height:400px;
+  max-height:600px;
+  overflow:hidden;
+
+}
+
+.hero-video-wrapper{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+.hero-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.video-gradient-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,.15) 0%,
+    rgba(0,0,0,.35) 60%,
+    rgba(0,0,0,.55) 100%
+  );
+}
+
+/* Floating back */
+
+.floating-back-btn{
+  position:absolute;
+  top:32px;
+  left:32px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 20px;
+  background:white;
+  border:none;
+  border-radius:50px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:var(--wd-shadow-md);
+}
+
+/* HERO TEXT */
+
+.hero-content{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:48px;
+}
+
+.workout-category-badge{
+  display:inline-block;
+  padding:8px 16px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;
+  color:white;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+.workout-hero-title{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(32px,5vw,56px);
+  font-weight:800;
+  color:white;
+}
+
+/* CONTENT */
+
+.workout-content-wrapper{
+  max-width:1200px;
+  margin:auto;
+  padding:0 32px 100px;
+}
+
+.workout-main-content{
+  margin-top:-60px;
+}
+
+/* STATS */
+
+.quick-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:16px;
+  margin-bottom:32px;
+}
+
+.stat-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:24px;
+  background:white;
+  border-radius:20px;
+  border:1px solid var(--wd-border);
+  box-shadow:var(--wd-shadow-sm);
+}
+
+.stat-card.calorie-stat{
+  background:linear-gradient(135deg,#fff5f0 0%,#ffe8dc 100%);
+  border:2px solid rgba(255,107,53,.2);
+}
+
+.stat-icon-wrapper{
+  width:48px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,107,53,.1);
+  border-radius:12px;
+}
+
+.stat-value{
+  font-family:'Outfit',sans-serif;
+  font-size:24px;
+  font-weight:800;
+}
+
+.stat-label{
+  font-size:13px;
+  color:var(--wd-text-muted);
+}
+
+/* SECTIONS */
+
+.detail-section{
+  background:white;
+  border-radius:24px;
+  padding:32px;
+  margin-bottom:24px;
+  border:1px solid var(--wd-border);
+  box-shadow:var(--wd-shadow-sm);
+}
+
+.section-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  padding-bottom:16px;
+  border-bottom:2px solid var(--wd-bg-secondary);
+}
+
+.section-icon{
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+  color:var(--wd-accent-primary);
+}
+
+.section-title{
+  font-family:'Outfit',sans-serif;
+  font-size:24px;
+  font-weight:700;
+}
+
+/* DESCRIPTION */
+
+.description-text{
+  font-size:16px;
+  line-height:1.8;
+  color:var(--wd-text-secondary);
+}
+
+/* INSTRUCTIONS */
+
+.instructions-list{
+  list-style:none;
+  counter-reset:step-counter;
+}
+
+.instruction-step{
+  counter-increment:step-counter;
+  display:flex;
+  gap:16px;
+  padding:16px;
+  margin-bottom:12px;
+  background:#f8fafc;
+  border-radius:16px;
+}
+
+.step-number{
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--wd-gradient-orange);
+  color:white;
+  border-radius:50%;
+  font-weight:700;
+}
+
+.step-number::before{
+  content:counter(step-counter);
+}
+
+.step-text{
+  font-size:15px;
+  line-height:1.6;
+}
+
+/* BENEFITS */
+
+.benefit-item{
+  display:flex;
+  gap:12px;
+  padding:16px;
+  margin-bottom:12px;
+  background:#f8fafc;
+  border-radius:12px;
+}
+
+.benefit-icon{
+  color:var(--wd-accent-primary);
+}
+
+/* TIPS */
+
+.tips-section{
+  background:linear-gradient(135deg,#fff5f0 0%,#ffe8dc 100%);
+  border:2px solid rgba(255,107,53,.2);
+}
+
+.tips-content{
+  padding:20px;
+  background:rgba(255,255,255,.6);
+  border-radius:12px;
+  border-left:4px solid var(--wd-accent-primary);
+}
+
+/* ACTION BAR */
+
+.workout-actions{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:20px 32px;
+  background:linear-gradient(to top,rgba(255,255,255,.98) 80%,transparent);
+  border-top:1px solid var(--wd-border);
+  display:flex;
+  gap:16px;
+  justify-content:center;
+}
+
+.action-btn{
+  padding:16px 32px;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.action-btn.secondary{
+  background:white;
+  border:2px solid var(--wd-border);
+}
+
+.action-btn.primary{
+  background:var(--wd-gradient-orange);
+  color:white;
+}

@@ -1,16 +1,15 @@
 import React from "react";
 import Header from "../component/common/header/header";
-import Footer from "../component/common/footer";
 import { Outlet } from "react-router-dom";
 
-const MainLayout = () => {
+const WithoutFooterLayout = () => {
   return (
     <>
       <Header/>
       <Outlet />
-      <Footer/>
+
     </>
   );
 };
 
-export default MainLayout;
+export default WithoutFooterLayout;
