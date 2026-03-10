@@ -143,7 +143,7 @@
 /* Progress Circle */
 .hw-progress-circle {
   position: absolute;
-  top: 50%;
+  top: 21%;
   right: 60px;
   transform: translateY(-50%);
   animation: scaleIn 0.8s ease-out 0.4s backwards;

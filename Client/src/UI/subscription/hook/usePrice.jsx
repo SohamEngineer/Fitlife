@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 const useHostedPayment = () => {
+  const navigate = useNavigate();
+
   const openPayment = (planKey) => {
-      console.log("Received planKey:", planKey);
+    console.log("Selected plan:", planKey);
 
     const links = {
-      regular: "https://rzp.io/rzp/u634VLl",
-      standard: "https://rzp.io/rzp/efxp9VpM",
-      gold: "https://rzp.io/rzp/gb0OK4AP", // ⚠ fix this if wrong
+      regular: "https://rzp.io/rzp/NeCFG03",
+      standard: "https://rzp.io/rzp/NeCFG03",
+      gold: "https://rzp.io/rzp/NeCFG03",
     };
 
     const url = links[planKey];
@@ -15,6 +19,10 @@ const useHostedPayment = () => {
       return;
     }
 
+    // save plan for later activation
+    localStorage.setItem("selectedPlan", planKey);
+
+    // redirect to Razorpay
     window.location.href = url;
   };
 

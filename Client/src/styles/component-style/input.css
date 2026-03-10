@@ -15,3 +15,22 @@
   border-width: 2px;
   outline: none;
 }
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.signup-input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+}

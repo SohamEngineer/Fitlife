@@ -4,7 +4,8 @@ import "./homeworkout.css";
 import useHome from "./hooks/useHome";
 
 const HomeWorkout = () => {
-  const {currentType,
+  const {
+    currentType,
     progressPercent,
     handleStart,
     handleDaySelect,
@@ -15,7 +16,9 @@ const HomeWorkout = () => {
     selectedDay,
     completedDays,
     workoutTypes,
-    navigate}=useHome();
+    navigate,
+    isPrime
+  } = useHome();
   return (
     <div className="home-workout-container container">
       {/* Header Section */}
@@ -86,24 +89,34 @@ const HomeWorkout = () => {
 
             <div className="day-list">
               {[...Array(30)].map((_, i) => {
+
                 const day = i + 1;
                 const isSelected = selectedDay === day;
                 const isCompleted = day < selectedDay;
+                const isLocked = !isPrime && day > 7;
 
                 return (
                   <button
                     key={day}
-                    className={`day-item ${isSelected ? "selected" : ""} ${isCompleted ? "completed" : ""}`}
+                    disabled={isLocked}
+                    className={`day-item 
+        ${isSelected ? "selected" : ""} 
+        ${isCompleted ? "completed" : ""} 
+        ${isLocked ? "locked" : ""}`}
                     onClick={() => handleDaySelect(day)}
                   >
                     <div className="day-item-content">
+
                       <span className="day-item-number">
-                        {isCompleted ? "✓" : day}
+                        {isLocked ? "🔒" : isCompleted ? "✓" : day}
                       </span>
+
                       <span className="day-item-label">
                         Day {day}
                       </span>
+
                     </div>
+
                     {isSelected && <div className="day-item-indicator"></div>}
                   </button>
                 );
@@ -117,7 +130,7 @@ const HomeWorkout = () => {
           {/* Workout Type Selector */}
           <section className="workout-type-section">
             <h2 className="content-title">Choose Your Focus</h2>
-            
+
             <div className="type-selector-grid">
               {workoutTypes.map((type) => (
                 <button
@@ -133,7 +146,7 @@ const HomeWorkout = () => {
                   {filter === type.value && (
                     <div className="type-card-check">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                   )}
@@ -154,12 +167,12 @@ const HomeWorkout = () => {
                   Day {selectedDay} • {todayWorkout.length} {todayWorkout.length === 1 ? 'Exercise' : 'Exercises'}
                 </p>
               </div>
-              
+
               {todayWorkout.length > 0 && (
                 <button className="quick-start-btn" onClick={handleStart}>
                   <span>Quick Start</span>
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M7.5 15l5-5-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M7.5 15l5-5-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               )}
@@ -203,13 +216,13 @@ const HomeWorkout = () => {
                   We couldn't find any {filter.toLowerCase()} workouts for Day {selectedDay}.
                 </p>
                 <div className="empty-state-actions">
-                  <button 
+                  <button
                     className="empty-action-btn primary"
                     onClick={() => setFilter("Full Body")}
                   >
                     Try Full Body
                   </button>
-                  <button 
+                  <button
                     className="empty-action-btn secondary"
                     onClick={() => handleDaySelect(1)}
                   >

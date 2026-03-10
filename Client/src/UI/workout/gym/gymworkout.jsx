@@ -16,7 +16,8 @@ const Gym = () => {
 completedDays,
 workoutTypes,
 filter,
-navigate}=useGym();
+navigate,
+isPrime}=useGym();
 
   return (
     <div className="gym-workout-container container">
@@ -88,28 +89,41 @@ navigate}=useGym();
 
             <div className="day-list">
               {[...Array(30)].map((_, i) => {
-                const day = i + 1;
-                const isSelected = selectedDay === day;
-                const isCompleted = day < selectedDay;
 
-                return (
-                  <button
-                    key={day}
-                    className={`day-item ${isSelected ? "selected" : ""} ${isCompleted ? "completed" : ""}`}
-                    onClick={() => handleDaySelect(day)}
-                  >
-                    <div className="day-item-content">
-                      <span className="day-item-number">
-                        {isCompleted ? "✓" : day}
-                      </span>
-                      <span className="day-item-label">
-                        Day {day}
-                      </span>
-                    </div>
-                    {isSelected && <div className="day-item-indicator"></div>}
-                  </button>
-                );
-              })}
+  const day = i + 1;
+  const isSelected = selectedDay === day;
+  const isCompleted = day < selectedDay;
+  const isLocked = !isPrime && day > 7;
+
+  return (
+    <button
+      key={day}
+      disabled={isLocked}
+      className={`day-item 
+        ${isSelected ? "selected" : ""} 
+        ${isCompleted ? "completed" : ""} 
+        ${isLocked ? "locked" : ""}`}
+      onClick={() => handleDaySelect(day)}
+    >
+
+      <div className="day-item-content">
+
+        <span className="day-item-number">
+          {isLocked ? "🔒" : isCompleted ? "✓" : day}
+        </span>
+
+        <span className="day-item-label">
+          Day {day}
+        </span>
+
+      </div>
+
+      {isSelected && <div className="day-item-indicator"></div>}
+
+    </button>
+  );
+
+})}
             </div>
           </div>
         </aside>

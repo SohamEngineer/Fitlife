@@ -14,6 +14,7 @@ import gymWorkoutRoutes from "./src/routes/gymWorkout.routes.js";
 import fitnessRoutes from "./src/routes/fitness.routes.js";
 import adminRoutes from "./src/routes/admin.routes.js";
 import fetchUser from "./src/routes/users.routes.js";
+import paymentRoutes from "./src/routes/payment.route.js";
 dotenv.config();
 
 const app=express();
@@ -29,6 +30,7 @@ app.use("/api/gymworkout", gymWorkoutRoutes);
 app.use('/gymphoto', express.static(path.join(path.resolve(), 'gymphoto')));//gym workout video uplode
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", fetchUser);
+app.use("/api/users", paymentRoutes);
 
 
 const PORT=process.env.PORT|| 8000

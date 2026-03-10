@@ -33,16 +33,7 @@
   overflow: hidden;
 }
 
-.about-hero::before {
-  content: "ABOUT";
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(120px, 18vw, 240px);
-  color: transparent;
-  -webkit-text-stroke: 1px #e5e7eb;
-}
+
 
 .hero-badge {
   display: inline-flex;

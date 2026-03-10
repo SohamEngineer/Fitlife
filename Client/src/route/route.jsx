@@ -32,6 +32,7 @@ import WorkoutDetails from '../component/workout-details/workout-details';
 import WorkoutPlayer from '../component/workout-player/workoutplayer';
 import WithFooterLayout from '../layout/with-footerLayout';
 import WithoutFooterLayout from '../layout/without-footerLayout';
+import PaymentSuccess from '../UI/subscription/success';
 // import WorkoutDetails from '../component/workoutdetails';
 const AllRoutes = () => {
   const { authUser } = useAuth();
@@ -83,6 +84,7 @@ const AllRoutes = () => {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
       </Route>
 
 
