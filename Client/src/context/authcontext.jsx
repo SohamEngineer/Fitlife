@@ -15,8 +15,23 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (user) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    setAuthUser(user);
+    const normalizedUser = {
+      ...user,
+      isPremium: Boolean(user?.isPremium),
+      profileComplete: Boolean(user?.profileComplete),
+    };
+
+    localStorage.setItem("user", JSON.stringify(normalizedUser));
+    setAuthUser(normalizedUser);
+  };
+
+  const updateUser = (patch) => {
+    setAuthUser((current) => {
+      const stored = current || JSON.parse(localStorage.getItem("user") || "null") || {};
+      const nextUser = { ...stored, ...patch };
+      localStorage.setItem("user", JSON.stringify(nextUser));
+      return nextUser;
+    });
   };
 
   const logout = () => {
@@ -26,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authUser, login, logout }}>
+    <AuthContext.Provider value={{ authUser, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

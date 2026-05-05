@@ -70,9 +70,9 @@ const signup=new mongoose.Schema({
       default: "user",
     },
     isPremium: {
-  type: Boolean,
-  default: false
-},
+      type: Boolean,
+      default: false,
+    },
     
 },{ timestamps: true })
 const NewUser=mongoose.model("NewUser",signup);

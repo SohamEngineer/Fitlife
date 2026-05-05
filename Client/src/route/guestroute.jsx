@@ -5,7 +5,7 @@ const GuestRoute = ({ children }) => {
   const { authUser } = useAuth();
   const user = authUser || JSON.parse(localStorage.getItem("user"));
 
-  return user ? <Navigate to="/home" replace /> : children;
+  return user ? <Navigate to={user.profileComplete ? "/dashboard" : "/onboarding"} replace /> : children;
 };
 
 export default GuestRoute;

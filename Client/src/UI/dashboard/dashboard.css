@@ -1,0 +1,229 @@
+.ai-dashboard {
+  width: min(1180px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+.ai-dashboard-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 22px;
+}
+
+.ai-dashboard-hero > div,
+.readiness-card,
+.dashboard-panel,
+.plan-day-card {
+  border: 1px solid rgba(19, 39, 66, 0.1);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 22px 55px rgba(19, 39, 66, 0.08);
+}
+
+.ai-dashboard-hero > div {
+  padding: 36px;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(46, 211, 183, 0.22), transparent 28%),
+    linear-gradient(135deg, rgba(111, 85, 242, 0.1), rgba(255, 255, 255, 0.96));
+}
+
+.ai-dashboard-hero span,
+.section-heading-row span {
+  color: #6f55f2;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.ai-dashboard h1 {
+  margin: 10px 0 14px;
+  color: #132742;
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  line-height: 0.94;
+}
+
+.ai-dashboard p {
+  color: #5f6f82;
+  line-height: 1.7;
+}
+
+.ai-dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ai-dashboard-actions button,
+.ai-dashboard-actions a,
+.empty-ai-state button,
+.section-heading-row button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.ai-dashboard-actions button,
+.empty-ai-state button,
+.section-heading-row button {
+  color: #ffffff;
+  background: #6f55f2;
+}
+
+.ai-dashboard-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ai-dashboard-actions a {
+  color: #132742;
+  background: #eef1ff;
+}
+
+.premium-note {
+  margin-top: 14px;
+  font-weight: 800;
+}
+
+.readiness-card {
+  display: grid;
+  align-content: center;
+  padding: 28px;
+}
+
+.readiness-card small {
+  color: #6f55f2;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.readiness-card strong {
+  display: block;
+  color: #132742;
+  font-size: 5rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.85fr 0.85fr;
+  gap: 18px;
+  margin-bottom: 34px;
+}
+
+.dashboard-panel {
+  padding: 24px;
+}
+
+.dashboard-panel h2,
+.section-heading-row h2,
+.plan-day-card h3 {
+  color: #132742;
+}
+
+.assessment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.assessment-tags span {
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #132742;
+  background: #eef1ff;
+  font-weight: 800;
+}
+
+.dashboard-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-list li {
+  border-radius: 12px;
+  padding: 12px;
+  color: #5f6f82;
+  background: #f8f9ff;
+}
+
+.empty-ai-state {
+  margin-top: 18px;
+}
+
+.section-heading-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.plan-day-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.plan-day-card {
+  padding: 22px;
+}
+
+.plan-day-card p {
+  margin: 6px 0 16px;
+}
+
+.plan-day-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.plan-day-card li {
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8f9ff;
+}
+
+.plan-day-card strong,
+.plan-day-card small {
+  display: block;
+}
+
+.plan-day-card small {
+  margin-top: 4px;
+  color: #5f6f82;
+}
+
+@media (max-width: 980px) {
+  .ai-dashboard-hero,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-day-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .section-heading-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .plan-day-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import { getJwtSecret } from "../utils/jwt.js";
 
 export const requireAuth = async (req, res, next) => {
   try {
@@ -14,7 +15,7 @@ export const requireAuth = async (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     // 3. Verify token (SAME secret used in login)
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, getJwtSecret());
 
     // 4. Attach user to request
     const user = await User.findById(decoded.id).select("-password");

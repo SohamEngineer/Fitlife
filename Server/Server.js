@@ -15,11 +15,17 @@ import fitnessRoutes from "./src/routes/fitness.routes.js";
 import adminRoutes from "./src/routes/admin.routes.js";
 import fetchUser from "./src/routes/users.routes.js";
 import paymentRoutes from "./src/routes/payment.route.js";
+import aiRoutes from "./src/routes/ai.routes.js";
+import workoutCatalogRoutes from "./src/routes/workoutCatalog.routes.js";
 dotenv.config();
 
 const app=express();
 app.use(cors());
 app.use(express.json());
+
+app.get("/api/health", (_req, res) => {
+    res.status(200).json({ success: true, service: "fitlife-api" });
+});
 
 app.use("/api/auth", router);
 app.use("/api/password", passwordRoutes);//Otp Send email
@@ -31,6 +37,8 @@ app.use('/gymphoto', express.static(path.join(path.resolve(), 'gymphoto')));//gy
 app.use("/api/admin", adminRoutes);
 app.use("/api/users", fetchUser);
 app.use("/api/users", paymentRoutes);
+app.use("/api/workouts", workoutCatalogRoutes);
+app.use("/api/ai", aiRoutes);
 
 
 const PORT=process.env.PORT|| 8000

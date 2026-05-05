@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllGymWorkoutsApi } from "../../../../api/gymworkout.api";
+import { getCurrentAIPlanApi } from "../../../../api/personalization.api";
 import { useNavigate } from "react-router-dom";
 
 export function useGym(){
@@ -7,17 +8,31 @@ export function useGym(){
   const [selectedDay, setSelectedDay] = useState(1);
   const [filter, setFilter] = useState("Full Body");
   const [allWorkouts, setAllWorkouts] = useState([]);
+  const [aiPlan, setAiPlan] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
   // premium check
-  const isPrime = localStorage.getItem("isPrime") === "true";
+  const isPrime = Boolean(JSON.parse(localStorage.getItem("user") || "null")?.isPremium);
 
   // restore selected day
   useEffect(() => {
     const savedDay = localStorage.getItem("gymWorkoutSelectedDay");
     if (savedDay) setSelectedDay(parseInt(savedDay));
+  }, []);
+
+  useEffect(() => {
+    const loadPlan = async () => {
+      try {
+        const data = await getCurrentAIPlanApi();
+        setAiPlan(data.plan);
+      } catch (error) {
+        setAiPlan(null);
+      }
+    };
+
+    loadPlan();
   }, []);
 
   // fetch workouts
@@ -54,7 +69,7 @@ export function useGym(){
 
     if (!isPrime && day > 7) {
       alert("Upgrade to Premium to unlock full gym workout plan");
-      navigate("/pricing");
+      navigate("/membership");
       return;
     }
 
@@ -66,7 +81,7 @@ export function useGym(){
 
     if (!isPrime && selectedDay > 7) {
       alert("Upgrade to Premium to access this workout");
-      navigate("/pricing");
+      navigate("/membership");
       return;
     }
 
@@ -86,6 +101,9 @@ export function useGym(){
   const completedDays = selectedDay - 1;
 
   const progressPercent = (completedDays / 30) * 100;
+  const forYouExercises = aiPlan?.weeklyPlan
+    ?.flatMap((day) => day.exercises.map((exercise) => ({ ...exercise, day: day.day, focus: day.focus })))
+    .filter((exercise) => exercise.workoutLocation === "gym") || [];
 
   return {
     currentType,
@@ -100,6 +118,8 @@ export function useGym(){
     completedDays,
     workoutTypes,
     navigate,
-    isPrime
+    isPrime,
+    aiPlan,
+    forYouExercises
   }
 }
