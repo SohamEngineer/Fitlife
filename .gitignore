@@ -1,0 +1,11 @@
+node_modules/
+Client/node_modules/
+Server/node_modules/
+Client/build/
+.netlify/
+.env
+.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
