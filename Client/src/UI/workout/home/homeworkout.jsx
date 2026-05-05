@@ -17,7 +17,9 @@ const HomeWorkout = () => {
     completedDays,
     workoutTypes,
     navigate,
-    isPrime
+    isPrime,
+    aiPlan,
+    forYouExercises
   } = useHome();
   return (
     <div className="home-workout-container container">
@@ -178,6 +180,26 @@ const HomeWorkout = () => {
               )}
             </div>
           </section>
+
+          {aiPlan && (
+            <section className="ai-for-you-section">
+              <div>
+                <span>Fitlife AI</span>
+                <h2>For You: home matches from your AI plan</h2>
+                <p>{forYouExercises.length ? "These exercises were matched from your personalized weekly plan." : "Your current AI plan does not include a matched home video yet."}</p>
+              </div>
+              {forYouExercises.length > 0 && (
+                <div className="ai-match-list">
+                  {forYouExercises.slice(0, 4).map((exercise) => (
+                    <button key={`${exercise.day}-${exercise.title}`} onClick={() => navigate(`/homeworkout/${exercise.workoutId}`)}>
+                      <strong>{exercise.title}</strong>
+                      <small>{exercise.day} · {exercise.focus}</small>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
 
           {/* Workout Cards */}
           <section className="workout-cards-section">

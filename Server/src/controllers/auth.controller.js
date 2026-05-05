@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-
-const JWT_SECURITY_KEY = process.env.JWT_SECRET || "soham@33"; // move to .env later
+import FitnessProfile from "../models/FitnessProfile.js";
+import { getJwtSecret } from "../utils/jwt.js";
 
 // SIGNUP
 export const signup = async (req, res) => {
@@ -46,7 +46,11 @@ const newUser = new User({
       dailyActivityLevel: dailyActivityLevel || "sedentary",
     });    await newUser.save();
 
-    return res.status(201).json({ message: "User registered successfully!" });
+    return res.status(201).json({
+      message: "User registered successfully!",
+      profileComplete: false,
+      isPremium: false,
+    });
 
   } catch (error) {
     console.error("Signup Error:", error);
@@ -70,7 +74,8 @@ export const login = async (req, res) => {
     if (!checkPassword)
       return res.status(401).json({ message: "Incorrect password" });
 
-    const token = jwt.sign({ id: user._id }, JWT_SECURITY_KEY, { expiresIn: "24h" });
+    const profile = await FitnessProfile.findOne({ userId: user._id });
+    const token = jwt.sign({ id: user._id }, getJwtSecret(), { expiresIn: "24h" });
 
     return res.status(200).json({
       message: "Login successful",
@@ -78,8 +83,12 @@ export const login = async (req, res) => {
       user: {
         id: user._id,
         name: user.name,
-        role: user.role
-      }
+        role: user.role,
+        isPremium: Boolean(user.isPremium),
+        profileComplete: Boolean(profile?.completedAt),
+      },
+      profileComplete: Boolean(profile?.completedAt),
+      isPremium: Boolean(user.isPremium),
     });
 
   } catch (error) {

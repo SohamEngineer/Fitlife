@@ -11,16 +11,16 @@ import AuthLayout from '../layout/authlayout';
 
 // Pages
 import Home from '../UI/home/home';
-import Signup from '../UI/Auth/signup/signup';
+import Signup from '../UI/Auth/Signup/signup';
 import ForgotPassword from '../UI/Auth/passwordManage/forgotPassword/forgot';
 import VerifyOTP from '../UI/Auth/passwordManage/otp/otpverify';
-import ResetPassword from '../UI/Auth/passwordManage/reset/resetpassword';
+import ResetPassword from '../UI/Auth/passwordManage/reset/resetPassword';
 import MealPlanning from '../UI/meal/mealPlaining';
 import MainMealSection from '../UI/meal/mainMealSection';
 import ProfilePage from '../UI/profile/profile';
 import Pricing from '../UI/subscription/pricing';
 import PaymentForm from '../UI/payment/payment';
-import Login from '../UI/Auth/logIn/login';
+import Login from '../UI/Auth/LogIn/Login';
 import Gym from '../UI/workout/gym/gymworkout';
 import GymWorkoutDetails from '../UI/workout/gym/workdetails';
 import Track from '../UI/tracking/track';
@@ -33,6 +33,8 @@ import WorkoutPlayer from '../component/workout-player/workoutplayer';
 import WithFooterLayout from '../layout/with-footerLayout';
 import WithoutFooterLayout from '../layout/without-footerLayout';
 import PaymentSuccess from '../UI/subscription/success';
+import Onboarding from '../UI/onboarding/onboarding';
+import Dashboard from '../UI/dashboard/dashboard';
 // import WorkoutDetails from '../component/workoutdetails';
 const AllRoutes = () => {
   const { authUser } = useAuth();
@@ -52,7 +54,7 @@ const AllRoutes = () => {
           LOGIN PAGE (Guest Only)
           - If user is logged in → redirect to /home
         */}
-        <Route 
+        <Route
           path="/" 
           element={
             <GuestRoute>
@@ -100,12 +102,30 @@ const AllRoutes = () => {
           - If NOT logged in → redirect to login
         */}
         <Route 
-          path="/home" 
+          path="/onboarding"
+          element={
+            <ProtectedRoute>
+              <Onboarding />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/home"
           element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route 
           path="/about" 

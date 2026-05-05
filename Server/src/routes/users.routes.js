@@ -1,11 +1,12 @@
 import express from "express";
-import { getAllUsers, getMyProfile } from "../controllers/user.controller.js";
-import { requireAuth } from "../middlewares/auth.middleware.js";
+import { getAllUsers, getFitnessProfile, getMyProfile, updateFitnessProfile } from "../controllers/user.controller.js";
+import { requireAdmin, requireAuth } from "../middlewares/auth.middleware.js";
 
 const fetchUser = express.Router();
 
-// GET /api/users
-fetchUser.get("/", getAllUsers);
-fetchUser.get("/me",requireAuth,getMyProfile)
+fetchUser.get("/", requireAuth, requireAdmin, getAllUsers);
+fetchUser.get("/me", requireAuth, getMyProfile);
+fetchUser.get("/me/profile", requireAuth, getFitnessProfile);
+fetchUser.put("/me/profile", requireAuth, updateFitnessProfile);
 
 export default fetchUser;

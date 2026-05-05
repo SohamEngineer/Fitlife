@@ -35,7 +35,7 @@ export const useLogin = () => {
       login(user);
 
       Swal.fire("Success!", "Login successful", "success");
-      navigate("/home");
+      navigate(user.profileComplete ? "/dashboard" : "/onboarding");
     } catch (error) {
       Swal.fire(
         "Error!",

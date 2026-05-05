@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllHomeWorkoutsApi } from "../../../../api/homeworkout.api";
+import { getCurrentAIPlanApi } from "../../../../api/personalization.api";
 import { useNavigate } from "react-router-dom";
 
 export default function useHome() {
@@ -7,12 +8,13 @@ export default function useHome() {
   const [selectedDay, setSelectedDay] = useState(1);
   const [filter, setFilter] = useState("Full Body");
   const [allWorkouts, setAllWorkouts] = useState([]);
+  const [aiPlan, setAiPlan] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
   // check premium status
-  const isPrime = localStorage.getItem("isPrime") === "true";
+  const isPrime = Boolean(JSON.parse(localStorage.getItem("user") || "null")?.isPremium);
 
   // Load selected day from storage
   useEffect(() => {
@@ -20,6 +22,19 @@ export default function useHome() {
     if (saved) {
       setSelectedDay(Number(saved));
     }
+  }, []);
+
+  useEffect(() => {
+    const loadPlan = async () => {
+      try {
+        const data = await getCurrentAIPlanApi();
+        setAiPlan(data.plan);
+      } catch (error) {
+        setAiPlan(null);
+      }
+    };
+
+    loadPlan();
   }, []);
 
   // Fetch workouts
@@ -58,7 +73,7 @@ export default function useHome() {
 
     if (!isPrime && day > 7) {
       alert("Upgrade to Premium to unlock full 30 day workout plan");
-      navigate("/pricing");
+      navigate("/membership");
       return;
     }
 
@@ -71,7 +86,7 @@ export default function useHome() {
 
     if (!isPrime && selectedDay > 7) {
       alert("Upgrade to Premium to unlock this workout");
-      navigate("/pricing");
+      navigate("/membership");
       return;
     }
 
@@ -121,6 +136,9 @@ export default function useHome() {
   const completedDays = selectedDay - 1;
 
   const progressPercent = (completedDays / 30) * 100;
+  const forYouExercises = aiPlan?.weeklyPlan
+    ?.flatMap((day) => day.exercises.map((exercise) => ({ ...exercise, day: day.day, focus: day.focus })))
+    .filter((exercise) => exercise.workoutLocation === "home") || [];
 
   return {
     currentType,
@@ -135,6 +153,8 @@ export default function useHome() {
     completedDays,
     workoutTypes,
     navigate,
-    isPrime
+    isPrime,
+    aiPlan,
+    forYouExercises
   };
 }

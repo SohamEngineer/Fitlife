@@ -1,36 +1,27 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../../api/axiosInstance";
+import { useAuth } from "../../context/authcontext";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const { updateUser } = useAuth();
 
   useEffect(() => {
     const activatePremium = async () => {
       try {
-        const userId = localStorage.getItem("userId");
+        const user = JSON.parse(localStorage.getItem("user") || "null");
+        const res = await axios.post("/users/activate", { userId: user?.id });
+        updateUser({ ...res.data.user, isPremium: true });
 
-        const res = await fetch("/api/user/payment/activate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId }),
-        });
-
-        const data = await res.json();
-
-        if (res.ok) {
-          localStorage.setItem("isPrime", "true");
-        }
-
-        navigate("/home");
+        navigate("/dashboard");
       } catch (error) {
         console.error("Activation failed", error);
       }
     };
 
     activatePremium();
-  }, [navigate]);
+  }, [navigate, updateUser]);
 
   return (
     <div style={{ textAlign: "center", padding: "80px" }}>

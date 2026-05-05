@@ -7,6 +7,7 @@ import { useHeader } from "./hook/useHeader";
 import DrawerMenu from "../../drawer";
 
 const nav__links = [
+  { path: "/dashboard", display: "AI Dashboard" },
   { path: "/home", display: "Home" },
   { path: "/about", display: "About us" },
   {
@@ -18,6 +19,7 @@ const nav__links = [
     ],
   },
   { path: "/membership", display: "Membership" },
+  { path: "/onboarding", display: "Personalize" },
   { path: "/track", display: "Track your fitness" },
 ];
 

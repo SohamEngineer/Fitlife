@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import useWorkoutPlayer from "./hooks/useWorkoutPlayer"
 import "./workoutplayer.css"
+import FitBotPanel from "../FitBot/FitBotPanel"
 
 import {
   FaArrowLeft,
@@ -96,6 +97,16 @@ const AnimatedWorkout = () => {
     if (e.detail === 2) {
       setPaused((p) => !p)
     }
+  }
+
+  const workoutContext = {
+    phase,
+    currentIndex,
+    currentTitle: current?.title,
+    currentDescription: current?.description,
+    nextTitle: next?.title,
+    timeLeft,
+    totalExercises: workouts.length,
   }
 
   /* Empty State */
@@ -490,6 +501,8 @@ const AnimatedWorkout = () => {
         </div>
 
       )}
+
+      <FitBotPanel workoutContext={workoutContext} />
 
     </div>
 
