@@ -16,7 +16,13 @@ services:
         sync: false
       - key: JWT_SECRET
         generateValue: true
+      - key: RESET_SECRET
+        generateValue: true
       - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: SMTP_EMAIL
+        sync: false
+      - key: SMTP_PASS
         sync: false
       - key: CLAUDE_MODEL
         value: claude-sonnet-4-20250514

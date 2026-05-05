@@ -12,7 +12,10 @@ Required server env vars:
 
 - `MONGO_URI`
 - `JWT_SECRET`
+- `RESET_SECRET`
 - `ANTHROPIC_API_KEY`
+- `SMTP_EMAIL`
+- `SMTP_PASS`
 - `CLAUDE_MODEL=claude-sonnet-4-20250514`
 - `AI_MOCK_MODE=false`
 
