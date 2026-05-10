@@ -1,7 +1,13 @@
 import axios from "axios";
 
+const localApiUrl = "http://localhost:8000/api";
+const productionApiUrl = "https://fitlife-jnz7.onrender.com/api";
+const isLocalhost =
+  typeof window !== "undefined" &&
+  ["localhost", "127.0.0.1"].includes(window.location.hostname);
+
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api",
+  baseURL: process.env.REACT_APP_API_URL || (isLocalhost ? localApiUrl : productionApiUrl),
 });
 
 instance.interceptors.request.use((config) => {
