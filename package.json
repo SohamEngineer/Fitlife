@@ -1,0 +1,12 @@
+{
+  "name": "fitlife",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "npm --prefix Server install",
+    "start": "npm --prefix Server start"
+  }
+}
