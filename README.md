@@ -48,5 +48,5 @@ Verification URLs:
 
 Latest verified production deploy:
 
-- Netlify deploy ID: `6a0072fdb3ae58f2dc351e9a`
-- Verified bundle: `static/js/main.6d77993e.js`
+- Netlify deploy ID: `6a00ddb4c5d71b64590a78e5`
+- Verified bundle: `static/js/main.1c2d0c7c.js`
