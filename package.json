@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "npm --prefix Server install",
-    "start": "npm --prefix Server start"
+    "start": "npm --prefix Server start",
+    "dev": "npm --prefix Server start"
   }
 }
