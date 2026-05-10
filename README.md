@@ -45,3 +45,8 @@ Verification URLs:
 
 - Frontend app: https://fitlife-ai-smkg.netlify.app
 - Backend API health: https://fitlife-jnz7.onrender.com/api/health
+
+Latest verified production deploy:
+
+- Netlify deploy ID: `6a0069e60c09100fccc77fb9`
+- Verified bundle: `static/js/main.2c008fe9.js`
