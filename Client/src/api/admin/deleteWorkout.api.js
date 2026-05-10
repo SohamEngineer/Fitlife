@@ -1,7 +1,9 @@
+import { API_BASE_URL } from "../axiosInstance";
+
 export const deleteGymWorkout = async (id) => {
   try {
     const res = await fetch(
-      `http://localhost:8000/api/admin/gymworkout/${id}`,
+      `${API_BASE_URL}/admin/gymworkout/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -23,7 +25,7 @@ export const deleteGymWorkout = async (id) => {
 export const deleteHomeWorkout = async (id) => {
   try {
     const res = await fetch(
-      `http://localhost:8000/api/admin/homeworkout/${id}`,
+      `${API_BASE_URL}/admin/homeworkout/${id}`,
       {
         method: "DELETE",
         headers: {

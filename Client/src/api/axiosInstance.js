@@ -5,9 +5,10 @@ const productionApiUrl = "https://fitlife-jnz7.onrender.com/api";
 const isLocalhost =
   typeof window !== "undefined" &&
   ["localhost", "127.0.0.1"].includes(window.location.hostname);
+export const API_BASE_URL = process.env.REACT_APP_API_URL || (isLocalhost ? localApiUrl : productionApiUrl);
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || (isLocalhost ? localApiUrl : productionApiUrl),
+  baseURL: API_BASE_URL,
 });
 
 instance.interceptors.request.use((config) => {

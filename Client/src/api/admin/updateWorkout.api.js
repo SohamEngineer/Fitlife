@@ -1,13 +1,15 @@
+import { API_BASE_URL } from "../axiosInstance";
+
 export const updateGymWorkout = async (id, formData) => {
   try {
     const res = await fetch(
-      `http://localhost:8000/api/admin/gymworkout/${id}`,
+      `${API_BASE_URL}/admin/gymworkout/${id}`,
       {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: formData, 
+        body: formData,
       }
     );
 
@@ -24,13 +26,13 @@ export const updateGymWorkout = async (id, formData) => {
 export const updateHomeWorkout = async (id, formData) => {
   try {
     const res = await fetch(
-      `http://localhost:8000/api/admin/homeworkout/${id}`,
+      `${API_BASE_URL}/admin/homeworkout/${id}`,
       {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: formData, 
+        body: formData,
       }
     );
 

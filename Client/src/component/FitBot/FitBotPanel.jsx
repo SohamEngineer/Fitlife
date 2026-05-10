@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../api/axiosInstance";
 import "./fitbot.css";
-
-const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:8000/api";
 
 const quickPrompts = [
   "I'm feeling tired today",
@@ -32,7 +31,7 @@ const FitBotPanel = ({ workoutContext }) => {
     setStreaming(true);
 
     try {
-      const response = await fetch(`${API_BASE}/ai/fitbot/stream`, {
+      const response = await fetch(`${API_BASE_URL}/ai/fitbot/stream`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
