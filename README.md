@@ -28,3 +28,20 @@ Required server env vars:
 Required client env var:
 
 - `REACT_APP_API_URL=https://fitlife-jnz7.onrender.com/api`
+
+Netlify build settings:
+
+- Base directory: `Client`
+- Build command: `npm run build`
+- Publish directory: `build`
+
+Production API behavior:
+
+- Local browser runs use `http://localhost:8000/api`.
+- Deployed Netlify builds use `REACT_APP_API_URL` when set.
+- If that env var is missing in production, the client falls back to `https://fitlife-jnz7.onrender.com/api`.
+
+Verification URLs:
+
+- Frontend app: https://fitlife-ai-smkg.netlify.app
+- Backend API health: https://fitlife-jnz7.onrender.com/api/health
