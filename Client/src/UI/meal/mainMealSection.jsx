@@ -15,13 +15,22 @@ function MainMealSection() {
       <h2>Eat Good. Feel Good.</h2>
 
       <div className="button-groups">
-        <button  className="active" onClick={() => toggleFeature('mealPlanning')}>
+        <button
+          className={activeFeature === 'mealPlanning' ? "active" : ""}
+          onClick={() => toggleFeature('mealPlanning')}
+        >
           {activeFeature === 'mealPlanning' ? "Hide Meal Planning" : "Show Meal Planning"}
         </button>
-        <button onClick={() => toggleFeature('calorieCalculator')}>
+        <button
+          className={activeFeature === 'calorieCalculator' ? "active" : ""}
+          onClick={() => toggleFeature('calorieCalculator')}
+        >
           {activeFeature === 'calorieCalculator' ? "Hide Calorie Calculator" : "Show Calorie Calculator"}
         </button>
-        <button onClick={() => toggleFeature('feature3')}>
+        <button
+          className={activeFeature === 'feature3' ? "active" : ""}
+          onClick={() => toggleFeature('feature3')}
+        >
           {activeFeature === 'feature3' ? "Hide Feature 3" : "Show Feature 3"}
         </button>
       </div>

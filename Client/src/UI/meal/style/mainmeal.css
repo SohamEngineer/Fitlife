@@ -1,55 +1,77 @@
 .main-meal-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    text-align: center;
+  width: min(1100px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4.5rem) 0;
+  text-align: center;
+}
+
+.main-meal-container h2 {
+  margin: 0 0 1.5rem;
+  color: #24272d;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 850;
+  line-height: 1.05;
+}
+
+.button-groups {
+  width: min(760px, 100%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.button-groups button {
+  min-height: 48px;
+  flex: 1 1 190px;
+  max-width: 260px;
+  border: 1px solid rgba(111, 85, 242, 0.2);
+  border-radius: 12px;
+  padding: 0 1.2rem;
+  color: #ffffff;
+  background: #6f55f2;
+  box-shadow: 0 12px 24px rgba(111, 85, 242, 0.14);
+  font-size: 0.96rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button-groups button:hover,
+.button-groups button.active {
+  background: #5c45dc;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(111, 85, 242, 0.22);
+}
+
+.meal-feature {
+  width: 100%;
+  animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
-  
-  .main-meal-container h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: #333;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+@media (max-width: 620px) {
+  .main-meal-container {
+    width: min(100% - 22px, 1100px);
+  }
+
   .button-groups {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
   }
-  
+
   .button-groups button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #6f55f2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    max-width: none;
   }
-  
-  .button-groups button:hover {
-    background-color: #6f55f2;
-  }
-  
-  .meal-feature {
-    animation: fadeIn 0.5s ease-in-out;
-    margin-top: 2rem;
-  }
-  
-  /* Optional fade-in effect */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(15px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  
+}
