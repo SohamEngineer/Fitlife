@@ -34,7 +34,7 @@ export const profileInputSchema = z.object({
   preferences: z.object({
     location: z.enum(["home", "gym", "both"]).default("both"),
     equipment: z.array(z.string()).default([]),
-    duration: z.coerce.number().min(10).max(120),
+    duration: z.coerce.number().min(10).max(180),
     intensity: z.string().min(1),
     workoutDays: z.array(z.string()).default([]),
   }),
@@ -51,7 +51,7 @@ export const aiPlanSchema = z.object({
     z.object({
       day: z.string().min(1),
       focus: z.string().min(1),
-      duration: z.coerce.number().min(10).max(120),
+      duration: z.coerce.number().min(10).max(180),
       intensity: z.string().min(1),
       exercises: z.array(
         z.object({

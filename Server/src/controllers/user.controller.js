@@ -117,10 +117,16 @@ export const updateFitnessProfile = async (req, res) => {
       profile,
     });
   } catch (err) {
+    const firstIssue = err.issues?.[0];
+    const fieldPath = firstIssue?.path?.join(".");
+    const message = firstIssue
+      ? `${fieldPath}: ${firstIssue.message}`
+      : "Invalid personalization profile";
+
     return res.status(400).json({
       success: false,
-      message: "Invalid personalization profile",
-      details: err.errors || err.message,
+      message,
+      details: err.issues || err.errors || err.message,
     });
   }
 };

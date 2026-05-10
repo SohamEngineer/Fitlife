@@ -7,9 +7,14 @@ import { useHeader } from "./hook/useHeader";
 import DrawerMenu from "../../drawer";
 
 const nav__links = [
-  { path: "/dashboard", display: "AI Dashboard" },
   { path: "/home", display: "Home" },
-  { path: "/about", display: "About us" },
+  {
+    display: "AI",
+    children: [
+      { path: "/dashboard", display: "Dashboard" },
+      { path: "/onboarding", display: "Personalize" },
+    ],
+  },
   {
     display: "Programs",
     children: [
@@ -19,8 +24,8 @@ const nav__links = [
     ],
   },
   { path: "/membership", display: "Membership" },
-  { path: "/onboarding", display: "Personalize" },
-  { path: "/track", display: "Track your fitness" },
+  { path: "/track", display: "Track" },
+  { path: "/about", display: "About" },
 ];
 
 const Header = () => {
@@ -60,7 +65,10 @@ const Header = () => {
                       {item.display}
                     </NavLink>
                   ) : (
-                    item.display
+                    <button type="button" className="nav__trigger">
+                      {item.display}
+                      <span aria-hidden="true">⌄</span>
+                    </button>
                   )}
 
                   {item.children && (

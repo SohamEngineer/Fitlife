@@ -1,8 +1,8 @@
 .onboarding-page,
 .ai-dashboard {
-  width: min(1180px, calc(100vw - 32px));
+  width: min(1120px, calc(100vw - 32px));
   margin: 0 auto;
-  padding: 48px 0 72px;
+  padding: 28px 0 56px;
 }
 
 .onboarding-loading,
@@ -11,88 +11,117 @@
   display: grid;
   place-items: center;
   color: #132742;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .onboarding-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 16px;
   align-items: stretch;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
+  padding: 0;
 }
 
 .onboarding-hero > div,
-.onboarding-hero aside,
-.onboarding-card {
+.profile-signal,
+.onboarding-panel {
   border: 1px solid rgba(19, 39, 66, 0.1);
-  border-radius: 18px;
+  border-radius: 12px;
   background: #ffffff;
-  box-shadow: 0 22px 55px rgba(19, 39, 66, 0.08);
+  box-shadow: 0 16px 38px rgba(19, 39, 66, 0.06);
 }
 
 .onboarding-hero > div {
-  padding: 36px;
-  background:
-    linear-gradient(135deg, rgba(111, 85, 242, 0.1), rgba(46, 211, 183, 0.12)),
-    #ffffff;
-}
-
-.onboarding-hero span,
-.onboarding-hero small,
-.onboarding-card h2 {
-  color: #6f55f2;
-  font-weight: 800;
+  padding: 22px 24px;
 }
 
 .onboarding-hero h1 {
-  max-width: 780px;
-  margin: 10px 0 12px;
+  margin: 0 0 6px;
   color: #132742;
-  font-size: clamp(2.3rem, 5vw, 4.8rem);
-  line-height: 0.95;
+  font-size: clamp(1.75rem, 3.4vw, 2.7rem);
+  line-height: 1.05;
 }
 
 .onboarding-hero p {
   max-width: 720px;
-  color: #5f6f82;
-  line-height: 1.7;
+  margin: 0;
+  color: #637184;
+  font-size: 0.98rem;
+  line-height: 1.55;
 }
 
-.onboarding-hero aside {
+.profile-signal {
   display: grid;
   align-content: center;
-  padding: 28px;
+  gap: 4px;
+  padding: 20px;
 }
 
-.onboarding-hero strong {
-  display: block;
+.profile-signal span,
+.profile-signal small,
+.onboarding-panel summary small {
+  color: #637184;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.profile-signal strong {
   color: #132742;
-  font-size: 4rem;
+  font-size: 2.4rem;
+  line-height: 1;
 }
 
 .onboarding-form {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
-.onboarding-card {
-  padding: 26px;
+.onboarding-panel {
+  overflow: hidden;
 }
 
-.onboarding-card h2 {
-  margin-bottom: 18px;
-  font-size: 1.35rem;
+.onboarding-panel summary {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 0 22px;
+  color: #132742;
+  cursor: pointer;
+  list-style: none;
+}
+
+.onboarding-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.onboarding-panel summary::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid #6f55f2;
+  border-bottom: 2px solid #6f55f2;
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.onboarding-panel[open] summary::after {
+  transform: rotate(225deg);
+}
+
+.onboarding-panel summary span {
+  color: #6f55f2;
+  font-size: 1.05rem;
+  font-weight: 900;
 }
 
 .onboarding-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.onboarding-grid.two {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+  padding: 2px 22px 22px;
 }
 
 .onboarding-grid .wide {
@@ -101,48 +130,59 @@
 
 .onboarding-grid label {
   display: grid;
-  gap: 8px;
+  gap: 7px;
+  min-width: 0;
+}
+
+.onboarding-grid label > span {
   color: #132742;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 800;
 }
 
 .onboarding-grid input,
 .onboarding-grid select {
   width: 100%;
-  min-height: 46px;
+  min-height: 42px;
   border: 1px solid rgba(19, 39, 66, 0.14);
-  border-radius: 12px;
-  padding: 0 13px;
+  border-radius: 10px;
+  padding: 0 12px;
   color: #132742;
   background: #f8f9ff;
+  font-size: 0.92rem;
+  font-weight: 650;
   outline: none;
+}
+
+.onboarding-grid input::placeholder {
+  color: #9aa6b4;
 }
 
 .onboarding-grid input:focus,
 .onboarding-grid select:focus {
   border-color: rgba(111, 85, 242, 0.65);
-  box-shadow: 0 0 0 4px rgba(111, 85, 242, 0.12);
+  box-shadow: 0 0 0 3px rgba(111, 85, 242, 0.1);
 }
 
 .day-picker {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  align-self: end;
 }
 
 .day-picker button,
 .onboarding-submit {
   border: 0;
-  border-radius: 12px;
-  font-weight: 800;
+  border-radius: 10px;
+  font-weight: 850;
   cursor: pointer;
 }
 
 .day-picker button {
-  min-height: 40px;
-  padding: 0 16px;
+  min-height: 38px;
+  min-width: 54px;
+  padding: 0 14px;
   color: #132742;
   background: #eef1ff;
 }
@@ -150,11 +190,11 @@
 .day-picker button.active,
 .onboarding-submit {
   color: #ffffff;
-  background: linear-gradient(135deg, #6f55f2, #2ed3b7);
+  background: linear-gradient(135deg, #6f55f2, #2fbfae);
 }
 
 .onboarding-submit {
-  min-height: 54px;
+  min-height: 52px;
   font-size: 1rem;
 }
 
@@ -163,22 +203,36 @@
   cursor: wait;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 980px) {
   .onboarding-hero,
-  .onboarding-grid,
-  .onboarding-grid.two {
-    grid-template-columns: 1fr 1fr;
+  .onboarding-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
+  .onboarding-page,
+  .ai-dashboard {
+    width: min(100% - 22px, 1120px);
+    padding-top: 18px;
+  }
+
   .onboarding-hero,
-  .onboarding-grid,
-  .onboarding-grid.two {
+  .onboarding-grid {
     grid-template-columns: 1fr;
   }
 
   .onboarding-grid .wide {
     grid-column: auto;
+  }
+
+  .onboarding-panel summary {
+    grid-template-columns: minmax(0, 1fr) 12px;
+    min-height: 64px;
+    padding: 0 16px;
+  }
+
+  .onboarding-grid {
+    padding: 0 16px 18px;
   }
 }
