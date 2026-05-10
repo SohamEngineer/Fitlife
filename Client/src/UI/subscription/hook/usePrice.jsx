@@ -1,8 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
 const useHostedPayment = () => {
-  const navigate = useNavigate();
-
   const openPayment = (planKey) => {
     console.log("Selected plan:", planKey);
 

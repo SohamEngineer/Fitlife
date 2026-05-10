@@ -1,6 +1,13 @@
 
+#membership {
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
 .pricing__top{
     text-align: center;
+    max-width: 920px;
+    margin: 0 auto;
 }
 
 .pricing__top h2{
@@ -16,22 +23,27 @@
 }
 
 .pricing__wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 2rem;
+    width: 100%;
 }
 
 .pricing__item{
     box-shadow: rgba(0,0,0,0.15) 0px 5px 15px 0px;
-    border-radius: 5px;
-    width: 33%;
+    border-radius: 8px;
+    width: 100%;
     background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing__card-top{
     padding: 30px;
     border-bottom: 1px solid #d3cef2;
+    text-align: center;
 }
 .pricing__card-top h2{
     font-size: 1.5rem;
@@ -47,29 +59,45 @@
 
 .pricing__item .services{
     padding: 20px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }
 
 .pricing__item .services ul li{
-    display: flex;
-    align-items: center;
-    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 0.85rem;
     color: #666;
+    font-size: 1rem;
+    line-height: 1.45;
+    text-align: left;
+    margin-bottom: 0.75rem;
 }
 
 .pricing__item .services ul li span i{
     font-size: 0.7rem;
 }
 
+.pricing__item .services ul li span {
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1.45;
+    padding-top: 0.12rem;
+}
+
 .services{
-    text-align: center;
+    text-align: left;
 }
 .services button{
-    margin-top: 50px;
+    align-self: center;
+    margin-top: auto;
 }
 
 .pricing__item-02 .pricing__card-top{
 background: var(--primary-color);
-border-radius: 5px 5px 0px 0px;
+border-radius: 8px 8px 0px 0px;
 }
 
 .pricing__item-02 .pricing__card-top h2{
@@ -85,9 +113,19 @@ font-weight: 500;
 color: var(--primary-color);
 }
 
+@media screen and (max-width: 1024px) {
+    .pricing__wrapper {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .pricing__item {
+      max-width: 700px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .pricing__wrapper {
-      flex-direction: column;
       gap: 2rem;
     }
   
@@ -104,6 +142,10 @@ color: var(--primary-color);
       margin-bottom: 30px;
       padding: 0 10px;
     }
+
+    .pricing__top p br {
+      display: none;
+    }
   
     .pricing__card-top h2 {
       font-size: 1.3rem;
@@ -117,4 +159,22 @@ color: var(--primary-color);
       margin-top: 30px;
     }
   }
+
+@media screen and (max-width: 480px) {
+    #membership .container {
+      padding-inline: 12px;
+    }
+
+    .pricing__card-top {
+      padding: 26px 18px;
+    }
+
+    .pricing__item .services {
+      padding: 20px 18px 24px;
+    }
+
+    .pricing__item .services ul li {
+      font-size: 0.98rem;
+    }
+}
   

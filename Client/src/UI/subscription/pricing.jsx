@@ -1,6 +1,5 @@
 import React from 'react';
 import "../../styles/pricing.css";
-import { useNavigate } from 'react-router-dom';
 import pricingPlans from '../../data/pricingplans';
 import PricingCard from '../../component/pricingcard';
 import useHostedPayment from './hook/usePrice';
