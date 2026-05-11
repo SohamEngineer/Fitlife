@@ -19,11 +19,15 @@ Required server env vars:
 - `MONGO_URI`
 - `JWT_SECRET`
 - `RESET_SECRET`
-- `ANTHROPIC_API_KEY`
 - `SMTP_EMAIL`
 - `SMTP_PASS`
+
+Optional AI server env vars:
+
+- `ANTHROPIC_API_KEY` for real Claude plan generation.
 - `CLAUDE_MODEL=claude-sonnet-4-20250514`
 - `AI_MOCK_MODE=false`
+- If `ANTHROPIC_API_KEY` is missing, Fitlife automatically uses its built-in demo planner so onboarding and dashboard plan generation still work without a paid API key.
 
 Required client env var:
 

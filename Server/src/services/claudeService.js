@@ -1,11 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 
 const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-4-20250514";
-const isMockMode = () => process.env.AI_MOCK_MODE === "true";
+const isMockMode = () => process.env.AI_MOCK_MODE === "true" || !process.env.ANTHROPIC_API_KEY;
 
 const createClient = () => {
   if (!process.env.ANTHROPIC_API_KEY) {
-    throw new Error("ANTHROPIC_API_KEY is missing. Set AI_MOCK_MODE=true for local mock responses.");
+    throw new Error("ANTHROPIC_API_KEY is missing. Fitlife can use the built-in demo planner when AI mock mode is enabled.");
   }
 
   return new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -125,7 +125,7 @@ const mockPlan = (profile, catalog) => {
 
 export const generateFitnessPlan = async ({ profile, catalog }) => {
   if (isMockMode()) {
-    return { plan: mockPlan(profile, catalog), model: "mock", source: "mock" };
+    return { plan: mockPlan(profile, catalog), model: "fitlife-demo-planner", source: "mock" };
   }
 
   const client = createClient();
