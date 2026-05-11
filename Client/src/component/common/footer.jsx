@@ -17,11 +17,11 @@ const Footer = () => {
         <div className="footer-left">
         <div className="logobox">
             <img src={assets.logo} alt="logo" className="footer-logo" />
-            <span>Health & Fitness</span>
+            <span>Fitlife</span>
         </div>
 
           <p className="footer-description">
-            Health & Fitness provides wellness solutions, workout guidance,
+            Fitlife provides wellness solutions, workout guidance,
             and nutrition tips to help you stay fit and healthy.
           </p>
 
@@ -105,7 +105,7 @@ const Footer = () => {
         </ul>
 
         <p className="footer-copy">
-          © {new Date().getFullYear()} Health & Fitness. All rights reserved.
+          © {new Date().getFullYear()} Fitlife. All rights reserved.
         </p>
       </div>
 

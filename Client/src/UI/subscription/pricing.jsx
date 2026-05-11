@@ -19,7 +19,7 @@ const Pricing = () => {
             Premium <span className="highlights">Subscription</span> plan
           </h2>
           <p>
-            Health & Fitness is a popular nutrition and exercise tracking app that offers a premium subscription service.<br />
+            Fitlife is a popular nutrition and exercise tracking app that offers a premium subscription service.<br />
             The premium version includes advanced nutrient tracking, customized goals and advice, and exclusive content.
           </p>
         </div>

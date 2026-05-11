@@ -28,7 +28,7 @@ const DrawerMenu = ({ open, onClose, navLinks, handleItemClick }) => {
         <div className="drawer-header">
           <div className="drawer-logo">
             <img src={assets.logo} alt="Logo" />
-            <h3>Health & Fitness</h3>
+            <h3>Fitlife</h3>
           </div>
 
           {/* Close Button */}

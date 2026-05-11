@@ -16,7 +16,7 @@ const Login = () => {
           <div className="form-container">
             <div className="login-title">
               <img src={assets.logo} alt="logo" />
-              <span>Health & Fitness</span>
+              <span>Fitlife</span>
             </div>
 
             <form onSubmit={handleLogin}>

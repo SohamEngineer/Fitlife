@@ -30,7 +30,7 @@ const Signup = () => {
         <div className="signup-top">
           <div className="signup-title">
             <img src={assets.logo} alt="logo" />
-            <span>Health & Fitness</span>
+            <span>Fitlife</span>
           </div>
 
           <p className="signup-footer" onClick={() => handleNavigate()}>

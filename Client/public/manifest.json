@@ -1,0 +1,20 @@
+{
+  "short_name": "Fitlife",
+  "name": "Fitlife",
+  "icons": [
+    {
+      "src": "fitlife-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "fitlife-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6f55f2",
+  "background_color": "#ffffff"
+}

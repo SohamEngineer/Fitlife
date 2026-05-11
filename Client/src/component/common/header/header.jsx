@@ -46,9 +46,9 @@ const Header = () => {
           {/* Logo */}
           <div className="logo">
             <div className="logo__img">
-              <img src={assets.logo} alt="Health & Fitness Logo" />
+              <img src={assets.logo} alt="Fitlife Logo" />
             </div>
-            <h2 className="text-red-600">Health & Fitness</h2>
+            <h2 className="text-red-600">Fitlife</h2>
           </div>
 
           {/* Desktop Navigation */}
