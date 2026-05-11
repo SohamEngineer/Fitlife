@@ -241,7 +241,7 @@ const Onboarding = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
-  const { updateUser } = useAuth();
+  const { updateUser, logout } = useAuth();
 
   const bmi = useMemo(() => {
     if (!form.height || !form.weight) return "--";
@@ -258,14 +258,21 @@ const Onboarding = () => {
         const data = await getDeepProfileApi();
         setForm({ ...defaultForm, ...flattenProfile(data.profile) });
       } catch (error) {
-        Swal.fire("Error", "Unable to load onboarding profile.", "error");
+        if (error.response?.status === 401) {
+          logout();
+          Swal.fire("Session expired", "Please log in again so Fitlife can load your saved profile.", "warning");
+          navigate("/");
+          return;
+        }
+
+        Swal.fire("Profile load issue", error.response?.data?.message || "Unable to load your saved onboarding profile.", "error");
       } finally {
         setLoading(false);
       }
     };
 
     loadProfile();
-  }, []);
+  }, [logout, navigate]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

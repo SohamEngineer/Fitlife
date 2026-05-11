@@ -1,5 +1,5 @@
 // context/authcontext.js
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 const AuthContext = createContext(null);
 
@@ -8,13 +8,26 @@ export const AuthProvider = ({ children }) => {
 
   // Restore user on refresh
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+
+    if (!token || !storedUser) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setAuthUser(null);
+      return;
+    }
+
+    try {
       setAuthUser(JSON.parse(storedUser));
+    } catch (_error) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setAuthUser(null);
     }
   }, []);
 
-  const login = (user) => {
+  const login = useCallback((user) => {
     const normalizedUser = {
       ...user,
       isPremium: Boolean(user?.isPremium),
@@ -23,25 +36,30 @@ export const AuthProvider = ({ children }) => {
 
     localStorage.setItem("user", JSON.stringify(normalizedUser));
     setAuthUser(normalizedUser);
-  };
+  }, []);
 
-  const updateUser = (patch) => {
+  const updateUser = useCallback((patch) => {
     setAuthUser((current) => {
       const stored = current || JSON.parse(localStorage.getItem("user") || "null") || {};
       const nextUser = { ...stored, ...patch };
       localStorage.setItem("user", JSON.stringify(nextUser));
       return nextUser;
     });
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setAuthUser(null);
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({ authUser, login, logout, updateUser }),
+    [authUser, login, logout, updateUser]
+  );
 
   return (
-    <AuthContext.Provider value={{ authUser, login, logout, updateUser }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

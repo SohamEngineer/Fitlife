@@ -10,7 +10,8 @@ const Dashboard = () => {
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
-  const { authUser } = useAuth();
+  const [planLoadError, setPlanLoadError] = useState("");
+  const { authUser, logout } = useAuth();
   const navigate = useNavigate();
 
   const user = authUser || JSON.parse(localStorage.getItem("user") || "null");
@@ -24,24 +25,41 @@ const Dashboard = () => {
       : "No injury guardrails flagged";
   }, [profile]);
 
-  const loadDashboard = async () => {
-    try {
-      const [profileData, planData] = await Promise.all([
-        getDeepProfileApi(),
-        getCurrentAIPlanApi(),
-      ]);
-      setProfile(profileData.profile);
-      setPlan(planData.plan);
-    } catch (error) {
-      Swal.fire("Dashboard error", "Unable to load your AI coaching dashboard.", "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const loadDashboard = async () => {
+      try {
+        const profileData = await getDeepProfileApi();
+        setProfile(profileData.profile);
+
+        try {
+          const planData = await getCurrentAIPlanApi();
+          setPlan(planData.plan);
+          setPlanLoadError("");
+        } catch (planError) {
+          if (planError.response?.status === 401) throw planError;
+          setPlan(null);
+          setPlanLoadError(planError.response?.data?.message || "Current AI plan could not be loaded yet.");
+        }
+      } catch (error) {
+        if (error.response?.status === 401) {
+          logout();
+          Swal.fire("Session expired", "Please log in again so Fitlife can securely load your saved profile.", "warning");
+          navigate("/");
+          return;
+        }
+
+        Swal.fire(
+          "Dashboard error",
+          error.response?.data?.message || "Unable to load your saved Fitlife profile.",
+          "error"
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     loadDashboard();
-  }, []);
+  }, [logout, navigate]);
 
   const handleGenerate = async () => {
     setGenerating(true);
@@ -88,6 +106,7 @@ const Dashboard = () => {
           {plan && !user?.isPremium && (
             <p className="premium-note">Free plan active. Premium unlocks regeneration, history, and FitBot.</p>
           )}
+          {planLoadError && <p className="dashboard-inline-note">{planLoadError}</p>}
         </div>
         <aside className="readiness-card">
           <small>Readiness score</small>

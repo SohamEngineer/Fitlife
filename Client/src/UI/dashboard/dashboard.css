@@ -93,6 +93,16 @@
   font-weight: 800;
 }
 
+.dashboard-inline-note {
+  margin-top: 12px;
+  display: inline-flex;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #5f3f08;
+  background: #fff6df;
+  font-weight: 800;
+}
+
 .readiness-card {
   display: grid;
   align-content: center;

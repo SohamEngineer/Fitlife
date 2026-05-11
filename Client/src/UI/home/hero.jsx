@@ -11,12 +11,11 @@ const Hero = () => {
         <div className="hero__wrapper">
           <div className="hero__content">
             <h2 className='section__title' data-aos-duration="1000" data-aos="fade-up">
-              Exercise is the key to a <span className="highlights">Healthy</span> Lifestyle
+              Train smarter with your <span className="highlights">Fitlife</span> coach
             </h2>
             <p data-aos-duration="1100" data-aos="fade-up" data-aos-delay="100">
-              Regular exercise is a crucial component of a healthy lifestyle.<br />
-              It has numerous benefits for physical and mental health, including reducing the risk of chronic diseases, improving cardiovascular function,<br />
-              enhancing mood, reducing stress, and promoting better sleep.
+              Build a personal routine around your body, goals, schedule, and recovery.
+              Fitlife blends guided workouts, nutrition support, and AI personalization so every session feels made for you.
             </p>
 
             <div className="hero__btns" data-aos-duration="1200" data-aos="fade-up" data-aos-delay="200">
