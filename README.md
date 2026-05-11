@@ -25,9 +25,10 @@ Required server env vars:
 Optional AI server env vars:
 
 - `ANTHROPIC_API_KEY` for real Claude plan generation.
-- `CLAUDE_MODEL=claude-sonnet-4-20250514`
+- `CLAUDE_MODEL=claude-sonnet-4-6`
 - `AI_MOCK_MODE=false`
 - If `ANTHROPIC_API_KEY` is missing, Fitlife automatically uses its built-in demo planner so onboarding and dashboard plan generation still work without a paid API key.
+- If the Anthropic account has no credits, Fitlife returns a clean billing message instead of broken JSON. Add credits or set `AI_MOCK_MODE=true` to use demo plans.
 
 Required client env var:
 

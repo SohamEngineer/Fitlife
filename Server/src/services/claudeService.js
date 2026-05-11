@@ -1,7 +1,47 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-4-20250514";
+const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-4-6";
 const isMockMode = () => process.env.AI_MOCK_MODE === "true" || !process.env.ANTHROPIC_API_KEY;
+
+const extractClaudeMessage = (error) => {
+  if (error?.error?.message) return error.error.message;
+
+  const rawMessage = error?.message || "";
+  const jsonStart = rawMessage.indexOf("{");
+
+  if (jsonStart >= 0) {
+    try {
+      const parsed = JSON.parse(rawMessage.slice(jsonStart));
+      return parsed?.error?.message || rawMessage;
+    } catch {
+      return rawMessage;
+    }
+  }
+
+  return rawMessage;
+};
+
+const normalizeClaudeError = (error) => {
+  const providerMessage = extractClaudeMessage(error);
+  const lowerMessage = providerMessage.toLowerCase();
+  const cleanError = new Error(providerMessage || "Claude API request failed. Please try again.");
+
+  cleanError.status = error?.status || 503;
+  cleanError.provider = "anthropic";
+
+  if (lowerMessage.includes("credit balance is too low")) {
+    cleanError.status = 402;
+    cleanError.code = "anthropic_low_credits";
+    cleanError.message =
+      "Anthropic credits are too low for real AI plan generation. Add credits in Anthropic Plans & Billing, or set AI_MOCK_MODE=true to use Fitlife demo plans.";
+  } else if (lowerMessage.includes("x-api-key") || lowerMessage.includes("api key")) {
+    cleanError.status = 401;
+    cleanError.code = "anthropic_invalid_key";
+    cleanError.message = "Anthropic API key is invalid or missing. Update ANTHROPIC_API_KEY in the backend environment.";
+  }
+
+  return cleanError;
+};
 
 const createClient = () => {
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -129,27 +169,33 @@ export const generateFitnessPlan = async ({ profile, catalog }) => {
   }
 
   const client = createClient();
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 3000,
-    system: systemPrompt,
-    tools: [planTool],
-    tool_choice: { type: "tool", name: "record_fitness_plan" },
-    messages: [
-      {
-        role: "user",
-        content: JSON.stringify({
-          profile,
-          workoutCatalog: catalog.slice(0, 160),
-          requirements: {
-            days: profile.trainingHistory.weeklyFrequency,
-            duration: profile.preferences.duration,
-            location: profile.preferences.location,
-          },
-        }),
-      },
-    ],
-  });
+  let response;
+
+  try {
+    response = await client.messages.create({
+      model: MODEL,
+      max_tokens: 3000,
+      system: systemPrompt,
+      tools: [planTool],
+      tool_choice: { type: "tool", name: "record_fitness_plan" },
+      messages: [
+        {
+          role: "user",
+          content: JSON.stringify({
+            profile,
+            workoutCatalog: catalog.slice(0, 160),
+            requirements: {
+              days: profile.trainingHistory.weeklyFrequency,
+              duration: profile.preferences.duration,
+              location: profile.preferences.location,
+            },
+          }),
+        },
+      ],
+    });
+  } catch (error) {
+    throw normalizeClaudeError(error);
+  }
 
   const toolUse = response.content.find((block) => block.type === "tool_use" && block.name === "record_fitness_plan");
   if (!toolUse?.input) {
@@ -170,22 +216,26 @@ export const streamFitBotResponse = async ({ profile, plan, workoutContext, mess
 
   const client = createClient();
   let fullText = "";
-  const stream = client.messages.stream({
-    model: MODEL,
-    max_tokens: 900,
-    system: `${systemPrompt}
+  try {
+    const stream = client.messages.stream({
+      model: MODEL,
+      max_tokens: 900,
+      system: `${systemPrompt}
 You are FitBot during an active workout. Be concise, practical, and safety-first. If the user reports pain, tell them to stop the painful movement and offer a safer modification.`,
-    messages: [
-      {
-        role: "user",
-        content: JSON.stringify({ profile, currentPlan: plan, workoutContext, conversation: messages.slice(-10) }),
-      },
-    ],
-  });
+      messages: [
+        {
+          role: "user",
+          content: JSON.stringify({ profile, currentPlan: plan, workoutContext, conversation: messages.slice(-10) }),
+        },
+      ],
+    });
 
-  for await (const text of stream.textStream) {
-    fullText += text;
-    onText(text);
+    for await (const text of stream.textStream) {
+      fullText += text;
+      onText(text);
+    }
+  } catch (error) {
+    throw normalizeClaudeError(error);
   }
 
   return fullText;
