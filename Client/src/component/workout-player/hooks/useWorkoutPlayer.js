@@ -59,8 +59,12 @@ export default function useWorkoutPlayer(workouts = []) {
 
     if (timeLeft === 0) {
       if (phase === "workout") {
-        setPhase("rest")
-        setTimeLeft(REST_TIME)
+        if (currentIndex + 1 < workouts.length) {
+          setPhase("rest")
+          setTimeLeft(REST_TIME)
+        } else {
+          handleNext()
+        }
       } else {
         handleNext()
       }
@@ -72,7 +76,7 @@ export default function useWorkoutPlayer(workouts = []) {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [paused, timeLeft, phase, handleNext, showComplete, workouts.length])
+  }, [paused, timeLeft, phase, handleNext, showComplete, workouts.length, currentIndex])
 
   const reset = useCallback(() => {
     setCurrentIndex(0)

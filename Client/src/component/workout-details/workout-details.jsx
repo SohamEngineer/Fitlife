@@ -6,7 +6,17 @@ import WorkoutBenefits from "./workout-benefits"
 import WorkoutActions from "./workout-actions"
 import useWorkoutDetails from "./hooks/useWorkoutDetails"
 import "./workoutdetails.css"
+import { FaBolt, FaClock, FaDumbbell, FaFireAlt, FaListOl } from "react-icons/fa"
 
+const parseExecution = (description = "") => {
+  const setsMatch = description.match(/(\d+)\s*sets?/i)
+  const repsMatch = description.match(/sets?\s*(?:of)?\s*([0-9]+(?:[-–][0-9]+)?)(?:\s*reps?)?/i)
+
+  return {
+    sets: setsMatch ? `${setsMatch[1]} sets` : "",
+    reps: repsMatch ? `${repsMatch[1].replace("–", "-")} reps` : "",
+  }
+}
 
 export default function WorkoutDetails({ source = "home" }) {
   const { id } = useParams()
@@ -19,13 +29,20 @@ export default function WorkoutDetails({ source = "home" }) {
   if (error) return <p>{error}</p>
   if (!workout) return null
 
+  const parsed = parseExecution(workout.description)
   const stats = [
-    { label: "Calories", value: workout.caloryburn },
-    { label: "Minutes", value: workout.duration },
-    { label: "Difficulty", value: workout.difficulty },
-    { label: "Sets", value: workout.sets },
-    { label: "Reps", value: workout.reps }
+    { label: "Calories", value: workout.caloryburn ? `${workout.caloryburn} kcal` : "", icon: <FaFireAlt />, featured: true },
+    { label: "Time", value: workout.duration ? `${workout.duration} min` : "30 sec round", icon: <FaClock /> },
+    { label: "Difficulty", value: workout.difficulty || workout.type || "Fitlife", icon: <FaBolt /> },
+    { label: "Sets", value: workout.sets ? `${workout.sets} sets` : parsed.sets, icon: <FaListOl /> },
+    { label: "Reps", value: workout.reps || parsed.reps, icon: <FaDumbbell /> }
   ]
+
+  const handleStartWorkout = () => {
+    const workoutQueue = [workout]
+    sessionStorage.setItem("fitlifeLastWorkoutQueue", JSON.stringify(workoutQueue))
+    navigate("/start-workout", { state: { workouts: workoutQueue } })
+  }
 
   return (
     <div className="workout-details-container container">
@@ -61,7 +78,7 @@ export default function WorkoutDetails({ source = "home" }) {
 
         <WorkoutActions
           onBack={() => navigate(-1)}
-          onStart={() => console.log("Start workout flow")}
+          onStart={handleStartWorkout}
         />
       </div>
     </div>

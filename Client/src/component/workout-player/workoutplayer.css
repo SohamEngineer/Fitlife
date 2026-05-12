@@ -134,17 +134,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(124, 58, 237, 0.14);
   border-radius: 12px;
-  color: white;
+  color: var(--primary-1);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .icon-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #ffffff;
   transform: scale(1.05);
 }
 
@@ -161,18 +160,19 @@
 
 .status-badge {
   padding: 6px 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.86);
   border-radius: 20px;
+  color: #132742;
   font-size: 12px;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(124, 58, 237, 0.14);
 }
 
 .counter {
   font-family: 'Outfit', sans-serif;
   font-size: 16px;
   font-weight: 700;
+  color: #132742;
 }
 
 /* Hints Overlay */
@@ -272,7 +272,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.38) 56%, rgba(255,255,255,0.7) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.62));
 }
 
 /* Center Content */
@@ -326,7 +328,8 @@
   font-weight: 900;
   line-height: 1.2;
   margin: 0;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  color: #17182f;
+  text-shadow: 0 8px 28px rgba(255, 255, 255, 0.8);
 }
 
 .rest-title {
@@ -350,8 +353,12 @@
 .description {
   margin-top: 12px;
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #475569;
   line-height: 1.6;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(124, 58, 237, 0.08);
+  border-radius: 14px;
+  padding: 10px 14px;
 }
 
 .exercise-meta {
@@ -366,12 +373,12 @@
   align-items: center;
   gap: 6px;
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.88);
   border-radius: 20px;
   font-size: 14px;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #132742;
+  border: 1px solid rgba(124, 58, 237, 0.14);
 }
 
 .meta-chip svg {
@@ -393,7 +400,7 @@
 
 .timer-bg {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.1);
+  stroke: rgba(124, 58, 237, 0.14);
   stroke-width: 6;
 }
 
@@ -423,7 +430,8 @@
   font-size: 72px;
   font-weight: 900;
   line-height: 1;
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  color: #15008a;
+  text-shadow: 0 4px 18px rgba(255, 255, 255, 0.75);
 }
 
 .time.urgent {
@@ -439,7 +447,7 @@
 .unit {
   display: block;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #5b4ad4;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
@@ -474,13 +482,13 @@
 .control-btn.secondary {
   width: 56px;
   height: 56px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(124, 58, 237, 0.14);
+  color: var(--primary-1);
 }
 
 .control-btn.secondary:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.2);
+  background: #ffffff;
   transform: scale(1.1);
 }
 
@@ -527,7 +535,7 @@
   left: 0;
   right: 0;
   padding: 20px 24px;
-  backdrop-filter: blur(10px);
+  pointer-events: none;
   z-index: 50;
 }
 
@@ -538,7 +546,7 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #64748b;
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -548,6 +556,7 @@
   gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
+  pointer-events: auto;
 }
 
 .queue-list::-webkit-scrollbar {
@@ -562,12 +571,14 @@
   border-radius: 24px;
   white-space: nowrap;
   font-size: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  box-shadow: 0 12px 30px rgba(19, 39, 66, 0.08);
   transition: all 0.3s ease;
 }
 
 .queue-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -584,7 +595,7 @@
 }
 
 .queue-name {
-  color: white;
+  color: #132742;
   font-weight: 500;
 }
 
@@ -593,6 +604,7 @@
   border-radius: 12px;
   font-size: 12px;
   color: var(--primary-1);
+  background: rgba(124, 58, 237, 0.09);
   font-weight: 600;
 }
 

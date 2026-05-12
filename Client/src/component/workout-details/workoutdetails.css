@@ -213,7 +213,7 @@
   margin-bottom:32px;
 }
 
-.stat-card{
+.workout-stat-card{
   display:flex;
   align-items:center;
   gap:16px;
@@ -224,7 +224,7 @@
   box-shadow:var(--wd-shadow-sm);
 }
 
-.stat-card.calorie-stat{
+.workout-stat-card.calorie-stat{
   background:linear-gradient(135deg,#fff5f0 0%,#ffe8dc 100%);
   border:2px solid rgba(255,107,53,.2);
 }

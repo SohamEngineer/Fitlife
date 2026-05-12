@@ -10,6 +10,9 @@ const quickPrompts = [
   "Reduce intensity for this set",
 ];
 
+const fallbackReply =
+  "FitBot could not complete the live AI response. Keep this set pain-free, reduce the pace, and retry in a moment.";
+
 const FitBotPanel = ({ workoutContext }) => {
   const user = useMemo(() => JSON.parse(localStorage.getItem("user") || "null"), []);
   const [messages, setMessages] = useState([
@@ -29,6 +32,9 @@ const FitBotPanel = ({ workoutContext }) => {
     setMessages((current) => [...current, { role: "user", content: cleanMessage }, { role: "assistant", content: "" }]);
     setInput("");
     setStreaming(true);
+    let receivedText = false;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45000);
 
     try {
       const response = await fetch(`${API_BASE_URL}/ai/fitbot/stream`, {
@@ -37,6 +43,7 @@ const FitBotPanel = ({ workoutContext }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+        signal: controller.signal,
         body: JSON.stringify({ message: cleanMessage, sessionId, workoutContext }),
       });
 
@@ -57,13 +64,23 @@ const FitBotPanel = ({ workoutContext }) => {
         const events = buffer.split("\n\n");
         buffer = events.pop() || "";
 
-        events.forEach((event) => {
+        for (const event of events) {
           const line = event.split("\n").find((item) => item.startsWith("data:"));
-          if (!line) return;
+          if (!line) continue;
 
-          const payload = JSON.parse(line.replace("data:", "").trim());
+          const rawPayload = line.replace("data:", "").trim();
+          if (!rawPayload || rawPayload === "[DONE]") continue;
+
+          let payload;
+          try {
+            payload = JSON.parse(rawPayload);
+          } catch (_error) {
+            continue;
+          }
+
           if (payload.sessionId) setSessionId(payload.sessionId);
           if (payload.type === "delta") {
+            receivedText = true;
             setMessages((current) => {
               const next = [...current];
               const last = next[next.length - 1];
@@ -74,16 +91,30 @@ const FitBotPanel = ({ workoutContext }) => {
           if (payload.type === "error") {
             throw new Error(payload.message);
           }
+        }
+      }
+
+      if (!receivedText) {
+        setMessages((current) => {
+          const next = [...current];
+          const last = next[next.length - 1];
+          next[next.length - 1] = { ...last, content: fallbackReply };
+          return next;
         });
       }
     } catch (error) {
       setMessages((current) => {
         const next = [...current];
         const last = next[next.length - 1];
-        next[next.length - 1] = { ...last, content: error.message };
+        const message =
+          error.name === "AbortError"
+            ? "FitBot took too long to respond. Try a shorter prompt or use a quick action."
+            : error.message || fallbackReply;
+        next[next.length - 1] = { ...last, content: message };
         return next;
       });
     } finally {
+      clearTimeout(timeoutId);
       setStreaming(false);
     }
   };

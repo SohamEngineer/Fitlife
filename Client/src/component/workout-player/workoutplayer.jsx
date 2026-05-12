@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import useWorkoutPlayer from "./hooks/useWorkoutPlayer"
 import "./workoutplayer.css"
@@ -10,7 +10,8 @@ import {
   FaPlay,
   FaForward,
   FaBackward,
-  FaRedo
+  FaRedo,
+  FaFireAlt
 } from "react-icons/fa"
 
 import { MdSkipNext } from "react-icons/md"
@@ -20,7 +21,18 @@ const AnimatedWorkout = () => {
 
   const { state } = useLocation()
   const navigate = useNavigate()
-  const workouts = state?.workouts || []
+  const workouts = useMemo(() => {
+    if (state?.workouts?.length) {
+      sessionStorage.setItem("fitlifeLastWorkoutQueue", JSON.stringify(state.workouts))
+      return state.workouts
+    }
+
+    try {
+      return JSON.parse(sessionStorage.getItem("fitlifeLastWorkoutQueue") || "[]")
+    } catch (_error) {
+      return []
+    }
+  }, [state])
 
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
@@ -104,6 +116,7 @@ const AnimatedWorkout = () => {
     currentIndex,
     currentTitle: current?.title,
     currentDescription: current?.description,
+    currentCalories: current?.caloryburn,
     nextTitle: next?.title,
     timeLeft,
     totalExercises: workouts.length,
@@ -279,6 +292,25 @@ const AnimatedWorkout = () => {
                     </p>
                   )}
 
+                  <div className="exercise-meta">
+                    {current?.caloryburn && (
+                      <span className="meta-chip">
+                        <FaFireAlt aria-hidden="true" />
+                        {current.caloryburn} kcal
+                      </span>
+                    )}
+                    {current?.type && (
+                      <span className="meta-chip">
+                        {current.type}
+                      </span>
+                    )}
+                    {current?.day && (
+                      <span className="meta-chip">
+                        {current.day}
+                      </span>
+                    )}
+                  </div>
+
                 </>
 
               )}
@@ -393,7 +425,7 @@ const AnimatedWorkout = () => {
 
                     {w.caloryburn && (
                       <span className="queue-cal">
-                        {w.caloryburn}cal
+                        {w.caloryburn} kcal
                       </span>
                     )}
 

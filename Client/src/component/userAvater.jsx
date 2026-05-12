@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
+import { getUserAvatarSrc, getUserInitial } from "../utils/userAvatar";
 
 import {
   Dialog,
@@ -14,6 +15,7 @@ import { useNavigate} from "react-router-dom";
 const UserAvatar = ({ user, onLogout }) => {
   const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
 const navigate=useNavigate();
+  const avatarSrc = getUserAvatarSrc(user);
   const handleAvatarClick = (event) => {
     navigate("/profile")
   };
@@ -29,8 +31,13 @@ const navigate=useNavigate();
   return (
     <>
       {/* Avatar */}
-      <Avatar onClick={handleAvatarClick} style={{ cursor: "pointer" }}>
-        {user?.name?.charAt(0).toUpperCase() || "U"}
+      <Avatar
+        src={avatarSrc || undefined}
+        alt={`${user?.name || "User"} profile`}
+        onClick={handleAvatarClick}
+        style={{ cursor: "pointer" }}
+      >
+        {getUserInitial(user)}
       </Avatar>
 
     
