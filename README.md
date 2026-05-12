@@ -22,6 +22,13 @@ Required server env vars:
 - `SMTP_EMAIL`
 - `SMTP_PASS`
 
+Optional admin bootstrap env vars:
+
+- `ADMIN_EMAIL`
+- `ADMIN_PASSWORD`
+- `ADMIN_NAME=Fitlife Admin`
+- When `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set, logging in with those credentials creates the admin account if it does not exist, or promotes the matching account to `role: "admin"`.
+
 Optional AI server env vars:
 
 - `ANTHROPIC_API_KEY` for real Claude plan generation.
