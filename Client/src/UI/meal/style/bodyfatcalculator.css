@@ -1,0 +1,340 @@
+.body-fat-calculator {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem) 0 0;
+  color: #14213d;
+}
+
+.body-fat-heading {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0 auto clamp(1.4rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.body-fat-heading p {
+  margin: 0;
+  color: #6f55f2;
+  font-size: 0.88rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.body-fat-heading h2 {
+  margin: 0;
+  color: #101828;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.04;
+  font-weight: 900;
+}
+
+.body-fat-heading span {
+  color: #667085;
+  font-size: clamp(0.95rem, 2vw, 1.08rem);
+  font-weight: 700;
+}
+
+.body-fat-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(1rem, 2vw, 1.4rem);
+  align-items: stretch;
+}
+
+.body-fat-card {
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(17, 24, 39, 0.1);
+}
+
+.body-fat-form {
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1rem, 3vw, 1.65rem);
+}
+
+.body-fat-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  border-radius: 16px;
+  background: #f3f5ff;
+  padding: 0.45rem;
+}
+
+.body-fat-tabs button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #475467;
+  font-size: 0.96rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.body-fat-tabs button.active {
+  color: #ffffff;
+  background: #6f55f2;
+  box-shadow: 0 10px 22px rgba(111, 85, 242, 0.22);
+}
+
+.body-fat-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.body-fat-fields label {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+  color: #111827;
+  font-size: 0.94rem;
+  font-weight: 850;
+  text-align: left;
+}
+
+.body-fat-fields input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid rgba(17, 24, 39, 0.16);
+  border-radius: 12px;
+  outline: none;
+  background: #f8f9ff;
+  padding: 0 0.95rem;
+  color: #111827;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.body-fat-fields input:focus {
+  border-color: rgba(111, 85, 242, 0.7);
+  box-shadow: 0 0 0 4px rgba(111, 85, 242, 0.12);
+}
+
+.body-fat-error {
+  margin: 0;
+  border-radius: 12px;
+  padding: 0.8rem 0.95rem;
+  color: #9f1239;
+  background: #fff1f2;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.body-fat-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.body-fat-actions button {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 1.15rem;
+  color: #111827;
+  background: transparent;
+  font-size: 0.96rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.body-fat-submit {
+  min-width: 150px;
+  color: #ffffff !important;
+  background: #6f55f2 !important;
+  box-shadow: 0 12px 26px rgba(111, 85, 242, 0.25);
+}
+
+.body-fat-clear:hover,
+.body-fat-submit:hover {
+  transform: translateY(-1px);
+}
+
+.body-fat-results {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.65rem);
+  overflow: hidden;
+}
+
+.body-fat-result-top {
+  border-radius: 18px;
+  padding: 1.1rem;
+  background:
+    radial-gradient(circle at top right, rgba(111, 85, 242, 0.16), transparent 42%),
+    #f5f7ff;
+  text-align: left;
+}
+
+.body-fat-result-top p {
+  margin: 0 0 0.8rem;
+  color: #6f55f2;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.body-fat-result-top h3 {
+  margin: 0;
+  color: #101828;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  line-height: 0.95;
+  font-weight: 900;
+}
+
+.body-fat-result-top span {
+  display: block;
+  margin-top: 0.75rem;
+  color: #475467;
+  font-size: 1rem;
+  font-weight: 850;
+}
+
+.body-fat-results.has-result .body-fat-result-top span {
+  color: #247a4b;
+}
+
+.body-fat-gauge {
+  position: relative;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3bb273 0 18%, #80ed99 18% 38%, #f9d423 38% 66%, #ff8c42 66% 82%, #b91c1c 82% 100%);
+}
+
+.body-fat-gauge span {
+  position: absolute;
+  top: -8px;
+  width: 4px;
+  height: 32px;
+  border-radius: 999px;
+  background: #101828;
+  transform: translateX(-50%);
+}
+
+.body-fat-result-grid {
+  display: grid;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.body-fat-result-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: #ffffff;
+  text-align: left;
+}
+
+.body-fat-result-row:nth-child(odd) {
+  background: #f8f9ff;
+}
+
+.body-fat-result-row span {
+  color: #475467;
+  font-weight: 800;
+}
+
+.body-fat-result-row strong {
+  color: #101828;
+  font-weight: 900;
+}
+
+.body-fat-reference {
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 24px;
+  background: #ffffff;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  box-shadow: 0 14px 40px rgba(17, 24, 39, 0.08);
+  text-align: left;
+}
+
+.body-fat-reference h3 {
+  margin: 0 0 1rem;
+  color: #101828;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.body-fat-reference-table {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.2fr) repeat(2, minmax(80px, 0.8fr));
+  border: 1px solid rgba(17, 24, 39, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.body-fat-reference-table > div {
+  color: #ffffff;
+  background: #314b7c;
+  font-weight: 900;
+}
+
+.body-fat-reference-table > div,
+.body-fat-reference-table > span {
+  padding: 0.75rem 0.85rem;
+}
+
+.body-fat-reference-table > span {
+  color: #101828;
+  background: #ffffff;
+  font-weight: 760;
+}
+
+.body-fat-reference-table > span:nth-of-type(6n + 1),
+.body-fat-reference-table > span:nth-of-type(6n + 2),
+.body-fat-reference-table > span:nth-of-type(6n + 3) {
+  background: #f3f5ff;
+}
+
+.body-fat-reference p {
+  margin: 1rem 0 0;
+  color: #667085;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .body-fat-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .body-fat-fields,
+  .body-fat-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .body-fat-fields,
+  .body-fat-actions {
+    display: grid;
+  }
+
+  .body-fat-actions button {
+    width: 100%;
+  }
+
+  .body-fat-reference-table {
+    grid-template-columns: minmax(118px, 1.2fr) repeat(2, minmax(70px, 0.8fr));
+    font-size: 0.85rem;
+  }
+
+  .body-fat-reference-table > div,
+  .body-fat-reference-table > span {
+    padding: 0.65rem;
+  }
+}

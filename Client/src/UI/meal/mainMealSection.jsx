@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./style/mainmeal.css";
+import BodyFatCalculator from './bodyfatcalculator';
 import CalorieCalculator from './caloricalculator';
 import MealPlanning from './mealPlaining';
 
@@ -28,14 +29,13 @@ function MainMealSection() {
           {activeFeature === 'calorieCalculator' ? "Hide Calorie Calculator" : "Show Calorie Calculator"}
         </button>
         <button
-          className={activeFeature === 'feature3' ? "active" : ""}
-          onClick={() => toggleFeature('feature3')}
+          className={activeFeature === 'more' ? "active" : ""}
+          onClick={() => toggleFeature('more')}
         >
-          {activeFeature === 'feature3' ? "Hide Feature 3" : "Show Feature 3"}
+          {activeFeature === 'more' ? "Hide More" : "More"}
         </button>
       </div>
 
-      {/* Conditionally render components based on active feature */}
       {activeFeature === 'mealPlanning' && (
         <div className="meal-feature">
           <MealPlanning/>
@@ -46,10 +46,9 @@ function MainMealSection() {
           <CalorieCalculator />
         </div>
       )}
-      {activeFeature === 'feature3' && (
+      {activeFeature === 'more' && (
         <div className="meal-feature">
-          {/* Render Feature 3 component here */}
-          <h3>Feature 3 Content</h3>
+          <BodyFatCalculator />
         </div>
       )}
     </div>

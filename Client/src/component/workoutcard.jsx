@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/workCard.css";
+import "../styles/WorkCard.css";
 
 const WorkoutCard = ({ workout, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
