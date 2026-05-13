@@ -1,45 +1,6 @@
 import React from 'react'
 import "./style/about.css"
 
-const teamMembers = [
-  {
-    id: 1,
-    name: "Alex Carter",
-    role: "Strength & Conditioning Coach",
-    image: "https://i.pravatar.cc/300?img=11",
-    emoji: "💪"
-  },
-  {
-    id: 2,
-    name: "Maya Singh",
-    role: "Yoga & Flexibility Expert",
-    image: "https://i.pravatar.cc/300?img=47",
-    emoji: "🧘"
-  },
-  {
-    id: 3,
-    name: "Jordan Lee",
-    role: "Nutrition Specialist",
-    image: "https://i.pravatar.cc/300?img=32",
-    emoji: "🥗"
-  },
-  {
-    id: 4,
-    name: "Sam Rivera",
-    role: "HIIT & Cardio Trainer",
-    image: "https://i.pravatar.cc/300?img=15",
-    emoji: "🔥"
-  },
-  {
-    id: 5,
-    name: "Priya Nair",
-    role: "Mindfulness & Recovery",
-    image: "https://i.pravatar.cc/300?img=44",
-    emoji: "🌟"
-  }
-]
-
-
 function About() {
   return (
     <>
@@ -170,27 +131,6 @@ function About() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* TEAM */}
-        <section className="team-section">
-          <div className="section-eyebrow">The People</div>
-          <h2 className="section-heading">Meet The<br />Team</h2>
-          <div className="team-grid">
-            {teamMembers.map(member => (
-              <div className="member-card" key={member.id}>
-                <div className="member-img-wrap">
-                  <img src={member.image} alt={member.name} />
-                  <div className="member-overlay" />
-                  <div className="member-emoji">{member.emoji}</div>
-                </div>
-                <div className="member-info">
-                  <h3>{member.name}</h3>
-                  <span>{member.role}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
